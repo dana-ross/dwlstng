@@ -1,0 +1,19 @@
+#dwls-results {
+	position: absolute;
+	z-index: 9999;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	background-color: #204a87;
+	color: #fff;
+	width: 13em;
+}
+
+#dwls-results .dwls_thumbnail_wrapper {
+	float: left;
+	width: 50px;
+	height: 50px;
+	background-color: #000;
+	background-size: contain;
+	margin: 5px;
+}
