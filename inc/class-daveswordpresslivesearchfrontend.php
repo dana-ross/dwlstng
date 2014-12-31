@@ -1,6 +1,6 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Cannot access pages directly.' );
 }
 
@@ -54,23 +54,23 @@ class DavesWordPressLiveSearchFrontEnd {
 		$settings = array(
 			'endpoint'  => home_url( self::ENDPOINT ),
 			'templates' => array(
-				'search-results' => file_get_contents( DWLS_TNG_PATH . '/tpl/search-results.tpl.ejs' ), ``
+				'search-results' => file_get_contents( DWLS_TNG_PATH . '/tpl/search-results.tpl.ejs' ),
 			),
 			'settings'  => array(
-				'offsets'           => array(
+				'offsets'        => array(
 					'x' => intval( get_option( 'daves-wordpress-live-search_xoffset', 0 ) ),
 					'y' => intval( get_option( 'daves-wordpress-live-search_yoffset', 0 ) ),
 				),
-				'min_chars'         => intval( get_option( 'daves-wordpress-live-search_minchars', 3 ) ),
-				'max_results'       => intval( get_option( 'daves-wordpress-live-search_max_results', 0 ) ),
-				'design' => array(
+				'min_chars'      => intval( get_option( 'daves-wordpress-live-search_minchars', 3 ) ),
+				'max_results'    => intval( get_option( 'daves-wordpress-live-search_max_results', 0 ) ),
+				'design'         => array(
 					'show_thumbs'       => (bool) get_option( 'daves-wordpress-live-search_thumbs', true ),
 					'show_excerpt'      => (bool) get_option( 'daves-wordpress-live-search_excerpt', true ),
 					'show_metadata'     => (bool) get_option( 'daves-wordpress-live-search_display_post_meta', true ),
 					'more_results_link' => (bool) get_option( 'daves-wordpress-live-search_more_results', true ),
 					'results_direction' => stripslashes( get_option( 'daves-wordpress-live-search_results_direction', 'down' ) ),
 				),
-				'excerpt_length'    => intval( get_option( 'daves-wordpress-live-search_excerpt_length', 30 ) ),
+				'excerpt_length' => intval( get_option( 'daves-wordpress-live-search_excerpt_length', 30 ) ),
 			),
 		);
 
@@ -101,11 +101,11 @@ class DavesWordPressLiveSearchFrontEnd {
 	public function parse_request( $wp_query ) {
 
 
-		if ( !isset( $wp_query->query_vars[self::ENDPOINT] ) ) {
+		if ( ! isset( $wp_query->query_vars[ self::ENDPOINT ] ) ) {
 			return $wp_query;
 		}
 
-		$wp_query->query_vars['s'] = $wp_query->query_vars[self::ENDPOINT];
+		$wp_query->query_vars['s'] = $wp_query->query_vars[ self::ENDPOINT ];
 
 		return $wp_query;
 	}
@@ -114,13 +114,12 @@ class DavesWordPressLiveSearchFrontEnd {
 
 		global $wp_query;
 
-		if ( !isset( $wp_query->query_vars[self::ENDPOINT] ) ) {
+		if ( ! isset( $wp_query->query_vars[ self::ENDPOINT ] ) ) {
 			return;
 		}
 
-
 		try {
-			wp_send_json_success( $this->do_search( $wp_query->query_vars[self::ENDPOINT] ) );
+			wp_send_json_success( $this->do_search( $wp_query->query_vars[ self::ENDPOINT ] ) );
 		} catch ( Exception $e ) {
 			wp_send_json_error( $e->getMessage() );
 		}
