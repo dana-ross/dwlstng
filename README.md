@@ -7,7 +7,7 @@ Dave's WordPress Live Search adds "live search" functionality to your WordPress 
 
 Dave's WordPress Live Search was built to work with any other search-related plugin out there because it's just using WordPress's WP_Query class. Heck, recent versions don't even do that, they let WordPress instantiate & configure WP_Query all by itself and just change the parameters a teensy little bit. But by running in an AJAX call to admin_ajax.php, the *correct* way do AJAX in WordPress, all sorts of things break. I even found one other search-related plugin that does nothing if DOING_AJAX is defined! How am I supposed to stay compatible with other plugins if they're doing things like that?
 
-"The Next Generation" of Dave's WordPress Live Search starts with a custom rewrite endpoint, skipping admin_ajax.php and all its quirks completely. It also removes options that were outdated and downright confusing for people.
+"The Next Generation" of Dave's WordPress Live Search starts with a custom rewrite endpoint, skipping admin_ajax.php and all its quirks completely. It also removes options that were outdated and downright confusing for people. Lastly, I'm using modern dependency management & build tools to streamline the development process.
 
 License
 =======
