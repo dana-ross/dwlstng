@@ -9,15 +9,14 @@ Dave's WordPress Live Search was built to work with any other search-related plu
 
 "The Next Generation" of Dave's WordPress Live Search starts with a custom rewrite endpoint, skipping admin_ajax.php and all its quirks completely. It also removes options that were outdated and downright confusing for people. Lastly, I'm using modern dependency management & build tools to streamline the development process.
 
-License
-=======
+## License
 
 [MIT](http://daveross.mit-license.org/)
 
 See [why I contribute to open source software](https://davidmichaelross.com/blog/contribute-open-source-software/).
 
-To-Do
-=======
+## To-Do
+
 1. A new name! First of all, it shouldn't have "WordPress" in the name for trademark reasons. Second, it shouldn't have "Dave" in it because I want this plugin to belong to the community (a polite way of saying HELP ME OUT HERE, PEOPLE!!)
 2. Unit tests (PHPUnit, WP_Mock)
 3. Integration tests (PhantomJS, Travis CI)
