@@ -6,7 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class DavesWordPressLiveSearchAdmin {
 
-	const option_group = 'daves-wordpress-live-search';
+	const option_group_general = 'daves-wordpress-live-search';
+	const option_group_design  = 'daves-wordpress-live-search-design';
 
 	const SETTINGS_PAGE_SLUG = 'daves-wordpress-live-search';
 
@@ -40,33 +41,33 @@ class DavesWordPressLiveSearchAdmin {
 	public function register_settings() {
 
 		add_settings_section(
-			self::option_group,
+			self::option_group_general,
 			'Settings',
 			'__return_empty_string',
 			$this->_settings_page_hook
 		);
 
 		// Headlines & Messages
-		register_setting( self::option_group, $this->_settings_page_hook . '_max_results', 'absint' );
-		register_setting( self::option_group, $this->_settings_page_hook . '_results_direction', array(
+		register_setting( self::option_group_general, $this->_settings_page_hook . '_max_results', 'absint' );
+		register_setting( self::option_group_general, $this->_settings_page_hook . '_results_direction', array(
 			$this,
 			'validate_results_direction'
 		) );
-		register_setting( self::option_group, $this->_settings_page_hook . '_minchars', 'absint' );
-		register_setting( self::option_group, $this->_settings_page_hook . '_display_post_meta', array(
+		register_setting( self::option_group_general, $this->_settings_page_hook . '_minchars', 'absint' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_display_post_meta', array(
 			$this,
 			'validate_boolean_string'
 		) );
-		register_setting( self::option_group, $this->_settings_page_hook . '_display_thumbnail', array(
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_display_thumbnail', array(
 			$this,
 			'validate_boolean_string'
 		) );
-		register_setting( self::option_group, $this->_settings_page_hook . '_display_excerpt', array(
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_display_excerpt', array(
 			$this,
 			'validate_boolean_string'
 		) );
-		register_setting( self::option_group, $this->_settings_page_hook . '_excerpt_length', 'absint' );
-		register_setting( self::option_group, $this->_settings_page_hook . '_more_results', array(
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_excerpt_length', 'absint' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_more_results', array(
 			$this,
 			'validate_boolean_string'
 		) );
@@ -77,7 +78,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Max # results',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group,
+			self::option_group_general,
 			array(
 				'name'  => $this->_settings_page_hook . '_max_results',
 				'type'  => 'number',
@@ -90,7 +91,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Results direction',
 			array( $this, 'select_field' ),
 			$this->_settings_page_hook,
-			self::option_group,
+			self::option_group_general,
 			array(
 				'name'    => $this->_settings_page_hook . '_results_direction',
 				'options' => array( 'up' => 'Up', 'down' => 'Down' ),
@@ -103,7 +104,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Minimum characters to search',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group,
+			self::option_group_general,
 			array(
 				'name'  => $this->_settings_page_hook . '_minchars',
 				'value' => get_option( $this->_settings_page_hook . '_minchars', '3' ),
@@ -111,12 +112,19 @@ class DavesWordPressLiveSearchAdmin {
 			)
 		);
 
+		add_settings_section(
+			self::option_group_design,
+			'Design',
+			'__return_empty_string',
+			$this->_settings_page_hook
+		);
+
 		add_settings_field(
 			$this->_settings_page_hook . '_display_post_meta',
 			'Display post metadata',
 			array( $this, 'checkbox_field' ),
 			$this->_settings_page_hook,
-			self::option_group,
+			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_display_post_meta',
 				'value' => get_option( $this->_settings_page_hook . '_display_post_meta', 'true' ),
@@ -128,7 +136,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Display thumbnail',
 			array( $this, 'checkbox_field' ),
 			$this->_settings_page_hook,
-			self::option_group,
+			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_display_thumbnail',
 				'value' => get_option( $this->_settings_page_hook . '_display_thumbnail', 'true' ),
@@ -140,7 +148,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Display excerpt',
 			array( $this, 'checkbox_field' ),
 			$this->_settings_page_hook,
-			self::option_group,
+			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_display_excerpt',
 				'value' => get_option( $this->_settings_page_hook . '_display_excerpt', 'true' ),
@@ -152,7 +160,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Excerpt length',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group,
+			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_excerpt_length',
 				'value' => get_option( $this->_settings_page_hook . '_excerpt_length', 30 ),
@@ -164,7 +172,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Show "more results" link',
 			array( $this, 'checkbox_field' ),
 			$this->_settings_page_hook,
-			self::option_group,
+			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_more_results',
 				'value' => get_option( $this->_settings_page_hook . '_more_results', 'true' ),
@@ -245,7 +253,7 @@ class DavesWordPressLiveSearchAdmin {
 		<h2>Dave's WordPress Live Search</h2>
 		<form action="options.php" method="post" class="daves-wordpress-live-search-settings-form" style="max-width: 550px;">
 			<?php
-			settings_fields( self::option_group );
+			settings_fields( self::option_group_general );
 			do_settings_sections( $this->_settings_page_hook );
 
 			submit_button( 'Submit' );
@@ -253,7 +261,7 @@ class DavesWordPressLiveSearchAdmin {
 		</form>
 	<?php
 	}
-	
+
 	public function validate_results_direction( $value ) {
 
 		if ( 'up' === $value ) {
