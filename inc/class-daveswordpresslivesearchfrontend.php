@@ -84,10 +84,16 @@ class DavesWordPressLiveSearchFrontEnd {
 
 	public function init() {
 
-		add_rewrite_rule( self::ENDPOINT . '/([^/]*)', 'index.php?' . self::ENDPOINT . '=$matches[1]', 'top' );
-		// @todo make this conditional
-		flush_rewrite_rules();
+		add_rewrite_rule( self::rewrite_endpoint(), self::rewrite_query_string(), 'top' );
 
+	}
+
+	public function rewrite_endpoint() {
+		return self::ENDPOINT . '/([^/]*)';
+	}
+
+	public function rewrite_query_string() {
+		return 'index.php?' . self::ENDPOINT . '=$matches[1]';
 	}
 
 	function add_query_vars( $vars ) {
@@ -225,3 +231,15 @@ class DavesWordPressLiveSearchFrontEnd {
 }
 
 $DavesWordPressLiveSearchFrontEnd = new DavesWordPressLiveSearchFrontEnd();
+
+register_activation_hook( __FILE__, 'daves_wordpress_live_search_activate' );
+function daves_wordpress_live_search_activate() {
+	DavesWordPressLiveSearchFrontEnd::init();
+	flush_rewrite_rules();
+}
+
+function daves_wordpress_live_search_deactivate() {
+	flush_rewrite_rules();
+}
+
+register_deactivation_hook( __FILE__, 'daves_wordpress_live_search_deactivate' );
