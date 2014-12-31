@@ -42,10 +42,7 @@ class DavesWordPressLiveSearchAdmin {
 		add_settings_section(
 			self::option_group,
 			'Settings',
-			array(
-				$this,
-				'render_settings_section'
-			),
+			'__return_empty_string',
 			$this->_settings_page_hook
 		);
 
@@ -256,11 +253,7 @@ class DavesWordPressLiveSearchAdmin {
 		</form>
 	<?php
 	}
-
-	public function render_settings_section() {
-		echo '';
-	}
-
+	
 	public function validate_results_direction( $value ) {
 
 		if ( 'up' === $value ) {
