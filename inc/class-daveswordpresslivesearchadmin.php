@@ -90,12 +90,12 @@ class DavesWordPressLiveSearchAdmin {
 		register_setting( self::option_group_design, $this->_settings_page_hook . '_results_width', 'absint' );
 
 		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_fg_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_bg_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_hover_bg_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_divider_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_footer_bg_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_footer_fg_color', 'sanitize_hex_color' );
 		register_setting( self::option_group_design, $this->_settings_page_hook . '_shadow',  array(
 			$this,
 			'validate_boolean_string'
@@ -229,7 +229,7 @@ class DavesWordPressLiveSearchAdmin {
 			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_title_color',
-				'value' => get_option( $this->_settings_page_hook . '_title_color', '#000000' ),
+				'value' => get_option( $this->_settings_page_hook . '_title_color', '#aaaadd' ),
 				'class' => 'dwls_color_picker',
 			)
 		);
@@ -242,7 +242,7 @@ class DavesWordPressLiveSearchAdmin {
 			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_fg_color',
-				'value' => get_option( $this->_settings_page_hook . '_fg_color', '#000000' ),
+				'value' => get_option( $this->_settings_page_hook . '_fg_color', '#aaaadd' ),
 				'class' => 'dwls_color_picker',
 			)
 		);
@@ -255,7 +255,7 @@ class DavesWordPressLiveSearchAdmin {
 			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_bg_color',
-				'value' => get_option( $this->_settings_page_hook . '_bg_color', '#000000' ),
+				'value' => get_option( $this->_settings_page_hook . '_bg_color', '#111133' ),
 				'class' => 'dwls_color_picker',
 			)
 		);
@@ -268,7 +268,7 @@ class DavesWordPressLiveSearchAdmin {
 			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_hover_bg_color',
-				'value' => get_option( $this->_settings_page_hook . '_hover_bg_color', '#000000' ),
+				'value' => get_option( $this->_settings_page_hook . '_hover_bg_color', '#444477' ),
 				'class' => 'dwls_color_picker',
 			)
 		);
@@ -281,7 +281,7 @@ class DavesWordPressLiveSearchAdmin {
 			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_divider_color',
-				'value' => get_option( $this->_settings_page_hook . '_divider_color', '#000000' ),
+				'value' => get_option( $this->_settings_page_hook . '_divider_color', '#111122' ),
 				'class' => 'dwls_color_picker',
 			)
 		);
@@ -294,7 +294,7 @@ class DavesWordPressLiveSearchAdmin {
 			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_footer_bg_color',
-				'value' => get_option( $this->_settings_page_hook . '_footer_bg_color', '#000000' ),
+				'value' => get_option( $this->_settings_page_hook . '_footer_bg_color', '#555577' ),
 				'class' => 'dwls_color_picker',
 			)
 		);
@@ -307,7 +307,7 @@ class DavesWordPressLiveSearchAdmin {
 			self::option_group_design,
 			array(
 				'name'  => $this->_settings_page_hook . '_footer_fg_color',
-				'value' => get_option( $this->_settings_page_hook . '_footer_fg_color', '#000000' ),
+				'value' => get_option( $this->_settings_page_hook . '_footer_fg_color', '#ffffff' ),
 				'class' => 'dwls_color_picker',
 			)
 		);
