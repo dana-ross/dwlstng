@@ -25,6 +25,15 @@ class DavesWordPressLiveSearchAdmin {
 
 	}
 
+	/**
+	 * @param $options
+	 *
+	 * @return mixed
+	 */
+	public static function default_id_from_name( $options ) {
+		return isset( $options['id'] ) ? $options : array_merge(array('id' => $options['name']), $options);
+	}
+
 	public function admin_enqueue_scripts() {
 
 		wp_enqueue_style( 'wp-color-picker' );
@@ -333,12 +342,8 @@ class DavesWordPressLiveSearchAdmin {
 				'type'  => 'text',
 				'value' => '',
 			),
-			$options
+			self::default_id_from_name( $options )
 		);
-
-		if ( ! isset( $options['id'] ) ) {
-			$options['id'] = $options['name'];
-		}
 
 		echo '<input type="' . esc_attr( $options['type'] ) . '" id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '" value="' . esc_attr( $options['value'] ) . '" class="' . esc_attr( $options['class'] ) . '" />';
 
@@ -353,12 +358,8 @@ class DavesWordPressLiveSearchAdmin {
 				'options' => array(),
 				'value'   => '',
 			),
-			$options
+			self::default_id_from_name( $options )
 		);
-
-		if ( ! isset( $options['id'] ) ) {
-			$options['id'] = $options['name'];
-		}
 
 		echo '<select id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '">';
 
@@ -378,12 +379,8 @@ class DavesWordPressLiveSearchAdmin {
 				'class' => '',
 				'value' => '',
 			),
-			$options
+			self::default_id_from_name( $options )
 		);
-
-		if ( ! isset( $options['id'] ) ) {
-			$options['id'] = $options['name'];
-		}
 
 		echo '<input type="hidden" name="' . esc_attr( $options['name'] ) . '" id="' . esc_attr( $options['id'] ) . '" value="false" />';
 		echo '<input type="checkbox" name="' . esc_attr( $options['name'] ) . '" id="' . esc_attr( $options['id'] ) . '" class="' . esc_attr( $options['class'] ) . '" value="true" ' . checked( 'true', $options['value'], false ) . '/>';
@@ -406,23 +403,11 @@ class DavesWordPressLiveSearchAdmin {
 	}
 
 	public function validate_results_direction( $value ) {
-
-		if ( 'up' === $value ) {
-			return 'up';
-		} else {
-			return 'down';
-		}
-
+		return ( 'up' === $value ) ? 'up' : 'down';
 	}
 
 	public function validate_boolean_string( $value ) {
-
-		if ( 'true' === $value ) {
-			return 'true';
-		} else {
-			return 'false';
-		}
-
+		return ( 'true' === $value ) ? 'true' : 'false';
 	}
 
 	/**
