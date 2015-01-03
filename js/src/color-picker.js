@@ -57,15 +57,4 @@ jQuery(document).ready(function($){
 	$('.dwls_color_picker').wpColorPicker({change: dwls_admin_color_change});
 	dwls_admin_color_change();
 
-	$('input[name="daves-wordpress-live-search_css"]').change(function() {
-		if($(this).val() === 'custom') {
-			$('#custom_colors').slideDown();
-		}
-		else {
-			$('#custom_colors').slideUp();
-		}
-	});
-	if($('input[name="daves-wordpress-live-search_css"]').filter('[value=custom]:checked').length > 0) {
-		$('#custom_colors').show();
-	}
 });
