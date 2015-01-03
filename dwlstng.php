@@ -17,4 +17,8 @@ define( 'DWLS_TNG_URL', plugin_dir_url( __FILE__ ) );
 define( 'DWLS_TNG_PATH', dirname( __FILE__ ) );
 
 include DWLS_TNG_PATH . '/inc/class-daveswordpresslivesearchfrontend.php';
-include DWLS_TNG_PATH . '/inc/class-daveswordpresslivesearchadmin.php';
+
+if(is_admin()) {
+	include DWLS_TNG_PATH . '/inc/class-selectoptionsrenderer.php';
+	include DWLS_TNG_PATH . '/inc/class-daveswordpresslivesearchadmin.php';
+}
