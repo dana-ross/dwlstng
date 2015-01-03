@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DavesWordPressLiveSearchAdmin {
 
 	const option_group_general = 'daves-wordpress-live-search';
-	const option_group_design  = 'daves-wordpress-live-search-design';
+	const option_group_design = 'daves-wordpress-live-search-design';
 
 	const SETTINGS_PAGE_SLUG = 'daves-wordpress-live-search';
 
@@ -22,6 +22,21 @@ class DavesWordPressLiveSearchAdmin {
 
 		add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+
+	}
+
+	public function admin_enqueue_scripts() {
+
+		wp_enqueue_style( 'wp-color-picker' );
+
+		wp_enqueue_script(
+			'daves-wordpress-live-search-color-picker',
+			DWLS_TNG_URL . '/js/src/color-picker.js',
+			array( 'wp-color-picker' ),
+			DWLS_TNG_VERSION,
+			true
+		);
 
 	}
 
@@ -71,6 +86,20 @@ class DavesWordPressLiveSearchAdmin {
 			$this,
 			'validate_boolean_string'
 		) );
+
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_results_width', 'absint' );
+
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
+		register_setting( self::option_group_design, $this->_settings_page_hook . '_shadow',  array(
+			$this,
+			'validate_boolean_string'
+		)  );
 
 
 		add_settings_field(
@@ -179,6 +208,122 @@ class DavesWordPressLiveSearchAdmin {
 			)
 		);
 
+		add_settings_field(
+			$this->_settings_page_hook . '_results_width',
+			'Results box width',
+			array( $this, 'text_field' ),
+			$this->_settings_page_hook,
+			self::option_group_design,
+			array(
+				'name'  => $this->_settings_page_hook . '_results_width',
+				'value' => get_option( $this->_settings_page_hook . '_results_width', '300' ),
+				'type'  => 'number',
+			)
+		);
+
+		add_settings_field(
+			$this->_settings_page_hook . '_title_color',
+			'Title color',
+			array( $this, 'text_field' ),
+			$this->_settings_page_hook,
+			self::option_group_design,
+			array(
+				'name'  => $this->_settings_page_hook . '_title_color',
+				'value' => get_option( $this->_settings_page_hook . '_title_color', '#000000' ),
+				'class' => 'dwls_color_picker',
+			)
+		);
+
+		add_settings_field(
+			$this->_settings_page_hook . '_fg_color',
+			'Text color',
+			array( $this, 'text_field' ),
+			$this->_settings_page_hook,
+			self::option_group_design,
+			array(
+				'name'  => $this->_settings_page_hook . '_fg_color',
+				'value' => get_option( $this->_settings_page_hook . '_fg_color', '#000000' ),
+				'class' => 'dwls_color_picker',
+			)
+		);
+
+		add_settings_field(
+			$this->_settings_page_hook . '_bg_color',
+			'Background color',
+			array( $this, 'text_field' ),
+			$this->_settings_page_hook,
+			self::option_group_design,
+			array(
+				'name'  => $this->_settings_page_hook . '_bg_color',
+				'value' => get_option( $this->_settings_page_hook . '_bg_color', '#000000' ),
+				'class' => 'dwls_color_picker',
+			)
+		);
+
+		add_settings_field(
+			$this->_settings_page_hook . '_hover_bg_color',
+			'Hover background color',
+			array( $this, 'text_field' ),
+			$this->_settings_page_hook,
+			self::option_group_design,
+			array(
+				'name'  => $this->_settings_page_hook . '_hover_bg_color',
+				'value' => get_option( $this->_settings_page_hook . '_hover_bg_color', '#000000' ),
+				'class' => 'dwls_color_picker',
+			)
+		);
+
+		add_settings_field(
+			$this->_settings_page_hook . '_divider_color',
+			'Divider color',
+			array( $this, 'text_field' ),
+			$this->_settings_page_hook,
+			self::option_group_design,
+			array(
+				'name'  => $this->_settings_page_hook . '_divider_color',
+				'value' => get_option( $this->_settings_page_hook . '_divider_color', '#000000' ),
+				'class' => 'dwls_color_picker',
+			)
+		);
+
+		add_settings_field(
+			$this->_settings_page_hook . '_footer_bg_color',
+			'Footer background color',
+			array( $this, 'text_field' ),
+			$this->_settings_page_hook,
+			self::option_group_design,
+			array(
+				'name'  => $this->_settings_page_hook . '_footer_bg_color',
+				'value' => get_option( $this->_settings_page_hook . '_footer_bg_color', '#000000' ),
+				'class' => 'dwls_color_picker',
+			)
+		);
+
+		add_settings_field(
+			$this->_settings_page_hook . '_footer_fg_color',
+			'Footer foreground color',
+			array( $this, 'text_field' ),
+			$this->_settings_page_hook,
+			self::option_group_design,
+			array(
+				'name'  => $this->_settings_page_hook . '_footer_fg_color',
+				'value' => get_option( $this->_settings_page_hook . '_footer_fg_color', '#000000' ),
+				'class' => 'dwls_color_picker',
+			)
+		);
+
+		add_settings_field(
+			$this->_settings_page_hook . '_shadow',
+			'Shadow',
+			array( $this, 'checkbox_field' ),
+			$this->_settings_page_hook,
+			self::option_group_design,
+			array(
+				'name'  => $this->_settings_page_hook . '_shadow',
+				'value' => get_option( $this->_settings_page_hook . '_shadow', 'false' ),
+			)
+		);
+
 	}
 
 	public function text_field( $options ) {
@@ -197,7 +342,7 @@ class DavesWordPressLiveSearchAdmin {
 			$options['id'] = $options['name'];
 		}
 
-		echo '<input type="' . esc_attr( $options['type'] ) . '" id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '" value="' . esc_attr( $options['value'] ) . '" />';
+		echo '<input type="' . esc_attr( $options['type'] ) . '" id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '" value="' . esc_attr( $options['value'] ) . '" class="' . esc_attr( $options['class'] ) . '" />';
 
 	}
 
