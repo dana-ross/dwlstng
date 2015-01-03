@@ -6,8 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class DavesWordPressLiveSearchAdmin {
 
-	const option_group_general = 'daves-wordpress-live-search';
-	const option_group_design = 'daves-wordpress-live-search-design';
+	const option_group = 'daves-wordpress-live-search';
 
 	const SETTINGS_PAGE_SLUG = 'daves-wordpress-live-search';
 
@@ -56,58 +55,57 @@ class DavesWordPressLiveSearchAdmin {
 	public function register_settings() {
 
 		add_settings_section(
-			self::option_group_general,
-			'Settings',
+			self::option_group,
+			'',
 			'__return_empty_string',
 			$this->_settings_page_hook
 		);
 
 		// Headlines & Messages
-		register_setting( self::option_group_general, $this->_settings_page_hook . '_max_results', 'absint' );
-		register_setting( self::option_group_general, $this->_settings_page_hook . '_results_direction', array(
+		register_setting( self::option_group, $this->_settings_page_hook . '_max_results', 'absint' );
+		register_setting( self::option_group, $this->_settings_page_hook . '_results_direction', array(
 			$this,
 			'validate_results_direction'
 		) );
-		register_setting( self::option_group_general, $this->_settings_page_hook . '_minchars', 'absint' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_display_post_meta', array(
+		register_setting( self::option_group, $this->_settings_page_hook . '_minchars', 'absint' );
+		register_setting( self::option_group, $this->_settings_page_hook . '_display_post_meta', array(
 			$this,
 			'validate_boolean_string'
 		) );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_display_thumbnail', array(
+		register_setting( self::option_group, $this->_settings_page_hook . '_display_thumbnail', array(
 			$this,
 			'validate_boolean_string'
 		) );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_display_excerpt', array(
+		register_setting( self::option_group, $this->_settings_page_hook . '_display_excerpt', array(
 			$this,
 			'validate_boolean_string'
 		) );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_excerpt_length', 'absint' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_more_results', array(
+		register_setting( self::option_group, $this->_settings_page_hook . '_excerpt_length', 'absint' );
+		register_setting( self::option_group, $this->_settings_page_hook . '_more_results', array(
 			$this,
 			'validate_boolean_string'
 		) );
 
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_results_width', 'absint' );
+		register_setting( self::option_group, $this->_settings_page_hook . '_results_width', 'absint' );
 
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_title_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_fg_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_bg_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_hover_bg_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_divider_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_footer_bg_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_footer_fg_color', 'sanitize_hex_color' );
-		register_setting( self::option_group_design, $this->_settings_page_hook . '_shadow',  array(
+		register_setting( self::option_group, $this->_settings_page_hook . '_title_color', array($this, 'sanitize_hex_color') );
+		register_setting( self::option_group, $this->_settings_page_hook . '_fg_color', array($this, 'sanitize_hex_color') );
+		register_setting( self::option_group, $this->_settings_page_hook . '_bg_color', array($this, 'sanitize_hex_color') );
+		register_setting( self::option_group, $this->_settings_page_hook . '_hover_bg_color', array($this, 'sanitize_hex_color') );
+		register_setting( self::option_group, $this->_settings_page_hook . '_divider_color', array($this, 'sanitize_hex_color') );
+		register_setting( self::option_group, $this->_settings_page_hook . '_footer_bg_color', array($this, 'sanitize_hex_color') );
+		register_setting( self::option_group, $this->_settings_page_hook . '_footer_fg_color', array($this, 'sanitize_hex_color') );
+		register_setting( self::option_group, $this->_settings_page_hook . '_shadow',  array(
 			$this,
 			'validate_boolean_string'
 		)  );
-
 
 		add_settings_field(
 			$this->_settings_page_hook . '_max_results',
 			'Max # results',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_general,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_max_results',
 				'type'  => 'number',
@@ -120,7 +118,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Results direction',
 			array( $this, 'select_field' ),
 			$this->_settings_page_hook,
-			self::option_group_general,
+			self::option_group,
 			array(
 				'name'    => $this->_settings_page_hook . '_results_direction',
 				'options' => array( 'up' => 'Up', 'down' => 'Down' ),
@@ -133,7 +131,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Minimum characters to search',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_general,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_minchars',
 				'value' => get_option( $this->_settings_page_hook . '_minchars', '3' ),
@@ -142,7 +140,7 @@ class DavesWordPressLiveSearchAdmin {
 		);
 
 		add_settings_section(
-			self::option_group_design,
+			self::option_group,
 			'Design',
 			'__return_empty_string',
 			$this->_settings_page_hook
@@ -153,7 +151,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Display post metadata',
 			array( $this, 'checkbox_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_display_post_meta',
 				'value' => get_option( $this->_settings_page_hook . '_display_post_meta', 'true' ),
@@ -165,7 +163,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Display thumbnail',
 			array( $this, 'checkbox_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_display_thumbnail',
 				'value' => get_option( $this->_settings_page_hook . '_display_thumbnail', 'true' ),
@@ -177,7 +175,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Display excerpt',
 			array( $this, 'checkbox_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_display_excerpt',
 				'value' => get_option( $this->_settings_page_hook . '_display_excerpt', 'true' ),
@@ -189,7 +187,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Excerpt length',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_excerpt_length',
 				'value' => get_option( $this->_settings_page_hook . '_excerpt_length', 30 ),
@@ -201,7 +199,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Show "more results" link',
 			array( $this, 'checkbox_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_more_results',
 				'value' => get_option( $this->_settings_page_hook . '_more_results', 'true' ),
@@ -213,7 +211,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Results box width',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_results_width',
 				'value' => get_option( $this->_settings_page_hook . '_results_width', '300' ),
@@ -226,7 +224,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Title color',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_title_color',
 				'value' => get_option( $this->_settings_page_hook . '_title_color', '#aaaadd' ),
@@ -239,7 +237,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Text color',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_fg_color',
 				'value' => get_option( $this->_settings_page_hook . '_fg_color', '#aaaadd' ),
@@ -252,7 +250,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Background color',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_bg_color',
 				'value' => get_option( $this->_settings_page_hook . '_bg_color', '#111133' ),
@@ -265,7 +263,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Hover background color',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_hover_bg_color',
 				'value' => get_option( $this->_settings_page_hook . '_hover_bg_color', '#444477' ),
@@ -278,7 +276,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Divider color',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_divider_color',
 				'value' => get_option( $this->_settings_page_hook . '_divider_color', '#111122' ),
@@ -291,7 +289,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Footer background color',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_footer_bg_color',
 				'value' => get_option( $this->_settings_page_hook . '_footer_bg_color', '#555577' ),
@@ -304,7 +302,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Footer foreground color',
 			array( $this, 'text_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_footer_fg_color',
 				'value' => get_option( $this->_settings_page_hook . '_footer_fg_color', '#ffffff' ),
@@ -317,7 +315,7 @@ class DavesWordPressLiveSearchAdmin {
 			'Shadow',
 			array( $this, 'checkbox_field' ),
 			$this->_settings_page_hook,
-			self::option_group_design,
+			self::option_group,
 			array(
 				'name'  => $this->_settings_page_hook . '_shadow',
 				'value' => get_option( $this->_settings_page_hook . '_shadow', 'false' ),
@@ -398,7 +396,7 @@ class DavesWordPressLiveSearchAdmin {
 		<h2>Dave's WordPress Live Search</h2>
 		<form action="options.php" method="post" class="daves-wordpress-live-search-settings-form" style="max-width: 550px;">
 			<?php
-			settings_fields( self::option_group_general );
+			settings_fields( self::option_group );
 			do_settings_sections( $this->_settings_page_hook );
 
 			submit_button( 'Submit' );
@@ -427,6 +425,27 @@ class DavesWordPressLiveSearchAdmin {
 
 	}
 
+	/**
+	 * Sanitizes a hex color.
+	 *
+	 * Returns either '', a 3 or 6 digit hex color (with #), or null.
+	 * For sanitizing values without a #, see sanitize_hex_color_no_hash().
+	 *
+	 * @since 3.4.0
+	 *
+	 * @param string $color
+	 * @return string|null
+	 */
+	public function sanitize_hex_color( $color ) {
+		if ( '' === $color )
+			return '';
+
+		// 3 or 6 hex digits, or the empty string.
+		if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) )
+			return $color;
+
+		return null;
+	}
 
 }
 
