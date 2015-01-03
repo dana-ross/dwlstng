@@ -1,5 +1,7 @@
 <?php
 
+namespace com\davidmichaelross\DavesWordPressLiveSearch;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Cannot access pages directly.' );
 }
