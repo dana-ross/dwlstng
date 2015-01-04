@@ -7,7 +7,7 @@ if ( ! $_tests_dir ) {
 
 $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
-require_once $_tests_dir . 'includes/functions.php';
+require_once rtrim( $_tests_dir, '/' ) . '/includes/functions.php';
 
 function _manually_load_plugin() {
 	require( dirname( __FILE__ ) . '/../dwlstng.php' );
