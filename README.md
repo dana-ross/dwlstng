@@ -1,4 +1,4 @@
-Dave's WordPress Live Search: The Next Generation
+Dave's WordPress Live Search: The Next Generation [![Build Status](https://travis-ci.org/daveross/dwlstng.svg?branch=master)](https://travis-ci.org/daveross/dwlstng)
 =======
 
 [Dave's WordPress Live Search](https://wordpress.org/plugins/daves-wordpress-live-search/) is a fairly popular WordPress plugin. It's also a huge pain in the ass to maintain.
