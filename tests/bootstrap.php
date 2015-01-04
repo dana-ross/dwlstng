@@ -1,6 +1,18 @@
 <?php
 
-echo getcwd();
-include 'wp-tests-config.php';
-include realpath( '../../../../wp-load.php' );
-require_once '../vendor/autoload.php';
+$_tests_dir = getenv( 'WP_TESTS_DIR' );
+if ( ! $_tests_dir ) {
+	$_tests_dir = '/tmp/wordpress-tests-lib';
+}
+
+$_SERVER['REMOTE_ADDR'] = '127.0.0.1';
+
+require_once $_tests_dir . 'includes/functions.php';
+
+function _manually_load_plugin() {
+	require( dirname( __FILE__ ) . '/../dwlstng.php' );
+}
+
+tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
+
+require( rtrim( $_tests_dir, '/' ) . '/bootstrap.php' );
