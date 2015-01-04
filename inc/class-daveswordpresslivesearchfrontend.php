@@ -90,15 +90,15 @@ class DavesWordPressLiveSearchFrontEnd {
 
 	}
 
-	public function rewrite_endpoint() {
+	public static function rewrite_endpoint() {
 		return self::ENDPOINT . '/([^/]*)';
 	}
 
-	public function rewrite_query_string() {
+	public static function rewrite_query_string() {
 		return 'index.php?' . self::ENDPOINT . '=$matches[1]';
 	}
 
-	function add_query_vars( $vars ) {
+	public static function add_query_vars( $vars ) {
 
 		$vars[] = self::ENDPOINT;
 
@@ -108,7 +108,6 @@ class DavesWordPressLiveSearchFrontEnd {
 
 	public function parse_request( $wp_query ) {
 
-
 		if ( ! isset( $wp_query->query_vars[ self::ENDPOINT ] ) ) {
 			return $wp_query;
 		}
@@ -116,6 +115,7 @@ class DavesWordPressLiveSearchFrontEnd {
 		$wp_query->query_vars['s'] = $wp_query->query_vars[ self::ENDPOINT ];
 
 		return $wp_query;
+
 	}
 
 	public function template_redirect() {

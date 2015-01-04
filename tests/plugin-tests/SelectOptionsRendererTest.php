@@ -1,5 +1,7 @@
 <?php
 
+require_once '../inc/class-selectoptionsrenderer.php';
+
 /**
  * Test course_date_to_formatted_dates() in functions.php
  * @covers SelectOptionsRenderer
