@@ -8,4 +8,4 @@ before_script:
     - source setup.sh
     - sleep 5
 script:
-  phpunit --configuration tests/phpunit.xml
+  phpunit
