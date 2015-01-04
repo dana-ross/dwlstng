@@ -217,8 +217,10 @@ class DavesWordPressLiveSearchFrontEnd {
 	}
 
 	public static function firstImg( $post_content ) {
+
 		$matches = array();
-		$output  = preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post_content, $matches );
+		preg_match_all( '/<img [^>]*src=["|\']([^"|\']+)/i', $post_content, $matches );
+
 		if ( isset( $matches[1][0] ) ) {
 			$first_img = $matches[1][0];
 		}
