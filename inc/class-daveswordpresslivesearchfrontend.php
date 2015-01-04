@@ -122,7 +122,7 @@ function template_redirect() {
 	}
 
 	try {
-		wp_send_json_success( $this->do_search( $wp_query->query_vars[ FRONT_END_ENDPOINT ] ) );
+		wp_send_json_success( do_search( $wp_query->query_vars[ FRONT_END_ENDPOINT ] ) );
 	} catch ( Exception $e ) {
 		wp_send_json_error( $e->getMessage() );
 	}
@@ -147,7 +147,7 @@ function do_search( $term ) {
 			'permalink' => get_permalink( $post->ID ),
 			'date'      => $post->post_date,
 			'post_type' => $post->post_type,
-			'thumbnail' => self::get_post_thumbnail( $post ),
+			'thumbnail' => get_post_thumbnail( $post ),
 		);
 
 	}
@@ -184,7 +184,7 @@ function get_post_thumbnail( $post ) {
 			$attachment_thumbnail = $firstImageMeta;
 		} else {
 			// If no post thumbnail, grab the first image from the post_date
-			$attachment_thumbnail = self::updateFirstImagePostmeta( $post->ID, $post );
+			$attachment_thumbnail = updateFirstImagePostmeta( $post->ID, $post );
 		}
 
 	}
@@ -207,7 +207,7 @@ function updateFirstImagePostmeta( $post_id, $post ) {
 		$content = apply_filters( 'the_content', $content );
 	}
 	$content              = str_replace( ']]>', ']]&gt;', $content );
-	$attachment_thumbnail = self::firstImg( $content );
+	$attachment_thumbnail = firstImg( $content );
 	update_post_meta( $post_id, '_dwls_first_image', $attachment_thumbnail );
 
 	return $attachment_thumbnail;
