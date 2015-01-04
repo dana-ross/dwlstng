@@ -10,5 +10,8 @@
     "grunt-phpcs": "^0.2.3",
     "grunt-phpmd": "^0.1.1",
     "time-grunt": "^1.0.0"
+  },
+  "scripts": {
+    "test": "grunt test --verbose"
   }
 }
