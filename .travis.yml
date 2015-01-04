@@ -6,4 +6,4 @@ env:
 before_script:
   - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
 script:
-  phpunit --configuration phpunit.xml
+  pwd && phpunit --configuration phpunit.xml
