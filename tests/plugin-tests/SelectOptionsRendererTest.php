@@ -86,4 +86,8 @@ class SelectOptionsRendererTest extends PHPUnit_Framework_TestCase {
 
 	}
 
+	public function test_travis_ci_always_fail() {
+		$this->assertEquals(true, false);
+	}
+
 }
