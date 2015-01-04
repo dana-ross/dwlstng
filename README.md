@@ -18,6 +18,5 @@ See [why I contribute to open source software](https://davidmichaelross.com/blog
 ## To-Do
 
 1. A new name! First of all, it shouldn't have "WordPress" in the name for trademark reasons. Second, it shouldn't have "Dave" in it because I want this plugin to belong to the community (a polite way of saying HELP ME OUT HERE, PEOPLE!!)
-2. Unit tests (PHPUnit, WP_Mock)
-3. Integration tests (PhantomJS, Travis CI)
-4. Keyboard navigation of results
+2. Integration tests (PhantomJS, Travis CI)
+3. Keyboard navigation of results
