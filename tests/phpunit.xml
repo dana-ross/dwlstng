@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true" bootstrap="bootstrap.php" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true">
+<phpunit colors="true" bootstrap="bootstrap.php" convertErrorsToExceptions="true" convertWarningsToExceptions="true">
 	<testsuites>
 		<testsuite name="Dave's WordPress Live Search Test Suite">
 			<directory suffix=".php">./plugin-tests/</directory>
