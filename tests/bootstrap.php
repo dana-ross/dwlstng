@@ -9,6 +9,8 @@ $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
 require_once rtrim( $_tests_dir, '/' ) . '/includes/functions.php';
 
+define('DOING_DWLS_UNIT_TESTS', true);
+
 function _manually_load_plugin() {
 	require( dirname( __FILE__ ) . '/../dwlstng.php' );
 }
@@ -16,3 +18,4 @@ function _manually_load_plugin() {
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
 require( rtrim( $_tests_dir, '/' ) . '/includes/bootstrap.php' );
+require 'vendor/autoload.php';

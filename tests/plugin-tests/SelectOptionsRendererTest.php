@@ -1,6 +1,6 @@
 <?php
 
-require_once '../inc/class-selectoptionsrenderer.php';
+//require_once '../inc/class-selectoptionsrenderer.php';
 
 /**
  * Test course_date_to_formatted_dates() in functions.php
@@ -86,8 +86,8 @@ class SelectOptionsRendererTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public function test_travis_ci_always_fail() {
-		$this->assertEquals(true, false);
-	}
+//	public function test_travis_ci_always_fail() {
+//		$this->assertEquals(true, false);
+//	}
 
 }
