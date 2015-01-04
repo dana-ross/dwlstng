@@ -8,5 +8,4 @@ before_script:
     - source setup.sh
     - sleep 5
 script:
-  pwd
   phpunit --configuration phpunit.xml

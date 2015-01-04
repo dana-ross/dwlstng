@@ -2,7 +2,7 @@
 <phpunit colors="true" bootstrap="bootstrap.php">
 	<testsuites>
 		<testsuite name="Dave's WordPress Live Search Test Suite">
-			<directory>./plugin-tests/</directory>
+			<directory>plugin-tests</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>
