@@ -340,13 +340,30 @@ function select_field( array $options ) {
 		default_id_from_name( $options )
 	);
 
-	$option_renderer = new SelectOptionsRenderer( $options['value'] );
-
 	echo '<select id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '">' .
-	     $option_renderer( $options['options'] ) .
+	     render_select_options( $options['options'] ) .
 	     '</select>';
 
 }
+
+/**
+ * @param array $options Associative array of select options
+ *
+ * @return string HTML
+ * @uses selected renders selected="selected" attribute if values match
+ */
+function render_select_options(array $options, $selected_value = null) {
+
+	$html = '';
+	return (array_walk(
+		$options,
+		function($label, $value) use (&$html, $selected_value) {
+			$html .= '<option value="' . esc_attr( $value ) . '" ' . selected( $selected_value, $value, false ) . '>' . esc_html( $label ) . '</option>';
+		}
+	)) ? $html : '';
+
+}
+
 
 /**
  * @param array $options

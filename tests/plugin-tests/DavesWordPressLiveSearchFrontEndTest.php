@@ -1,7 +1,5 @@
 <?php
 
-//require_once '../inc/class-daveswordpresslivesearchfrontend.php';
-
 class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 
 	public function setUp() {

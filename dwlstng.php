@@ -19,6 +19,5 @@ define( 'DWLS_TNG_PATH', dirname( __FILE__ ) );
 include DWLS_TNG_PATH . '/inc/class-daveswordpresslivesearchfrontend.php';
 
 if ( is_admin() || ( defined( 'DOING_DWLS_UNIT_TESTS' ) && DOING_DWLS_UNIT_TESTS ) ) {
-	include DWLS_TNG_PATH . '/inc/class-selectoptionsrenderer.php';
 	include DWLS_TNG_PATH . '/inc/class-daveswordpresslivesearchadmin.php';
 }
