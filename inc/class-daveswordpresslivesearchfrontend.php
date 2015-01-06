@@ -184,16 +184,15 @@ function get_post_thumbnail( $post ) {
 			$attachment_thumbnail = $firstImageMeta;
 		} else {
 			// If no post thumbnail, grab the first image from the post_date
-			$attachment_thumbnail = updateFirstImagePostmeta( $post->ID, $post );
+			$attachment_thumbnail = update_first_image_postmeta( $post->ID, $post );
 		}
-
 	}
 
 	return $attachment_thumbnail;
 
 }
 
-function updateFirstImagePostmeta( $post_id, $post ) {
+function update_first_image_postmeta( $post_id, $post ) {
 
 	$parent_post = wp_is_post_revision( $post_id );
 	if ( false !== $parent_post ) {
@@ -207,7 +206,7 @@ function updateFirstImagePostmeta( $post_id, $post ) {
 		$content = apply_filters( 'the_content', $content );
 	}
 	$content              = str_replace( ']]>', ']]&gt;', $content );
-	$attachment_thumbnail = firstImg( $content );
+	$attachment_thumbnail = first_img( $content );
 	update_post_meta( $post_id, '_dwls_first_image', $attachment_thumbnail );
 
 	return $attachment_thumbnail;
@@ -216,7 +215,7 @@ function updateFirstImagePostmeta( $post_id, $post ) {
 
 add_action( 'save_post', __NAMESPACE__ . '\updateFirstImagePostmeta', 10, 2 );
 
-function firstImg( $post_content ) {
+function first_img( $post_content ) {
 
 	$matches = array();
 	preg_match_all( '/<img [^>]*src=["|\']([^"|\']+)/i', $post_content, $matches );
