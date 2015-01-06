@@ -396,26 +396,19 @@ function validate_boolean_string( $value ) {
 }
 
 /**
- * Sanitizes a hex color.
+ * Sanitize a three or six digit hex color code with leading '#'.
+ * @see sanitize_hex_color_no_hash() in WP core for santizing values without a '#'
  *
- * Returns either '', a 3 or 6 digit hex color (with #), or null.
- * For sanitizing values without a #, see sanitize_hex_color_no_hash().
+ * @param string $color hex value with leading '#'
  *
- * @since 3.4.0
- *
- * @param string $color
- *
- * @return string|null
+ * @return string color or ''
  */
-function sanitize_hex_color( $color ) {
-	if ( '' === $color ) {
+function sanitize_hex_color( $color = '' ) {
+
+	if ( '' === $color || ! is_string( $color ) ) {
 		return '';
 	}
 
-	// 3 or 6 hex digits, or the empty string.
-	if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
-		return $color;
-	}
+	return preg_match( '/^#([0-9a-fA-F]{3}){1,2}$/', $color ) ? $color : '';
 
-	return null;
 }
