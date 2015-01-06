@@ -350,15 +350,16 @@ function select_field( array $options ) {
  * @return string HTML
  * @uses selected renders selected="selected" attribute if values match
  */
-function render_select_options(array $options, $selected_value = null) {
+function render_select_options( array $options, $selected_value = null ) {
 
 	$html = '';
-	return (array_walk(
+
+	return ( array_walk(
 		$options,
-		function($label, $value) use (&$html, $selected_value) {
+		function ( $label, $value ) use ( &$html, $selected_value ) {
 			$html .= '<option value="' . esc_attr( $value ) . '" ' . selected( $selected_value, $value, false ) . '>' . esc_html( $label ) . '</option>';
 		}
-	)) ? $html : '';
+	) ) ? $html : '';
 
 }
 
