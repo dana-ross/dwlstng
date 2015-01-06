@@ -55,7 +55,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	public function test_first_img_valid() {
 
 		$this->assertEquals(
-			com\davidmichaelross\DavesWordPressLiveSearch\firstImg(
+			com\davidmichaelross\DavesWordPressLiveSearch\first_img(
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ullamcorper est ac lacinia convallis. <img src="test.jpg" />Nullam tortor dolor, viverra ac turpis eget, luctus iaculis orci. Sed fringilla quis libero id interdum. Etiam elementum, turpis quis aliquet aliquet, est leo imperdiet dui, ac vestibulum est nulla eget nisi. Duis rhoncus orci eget nulla luctus tempus. Etiam augue lacus, pharetra in libero non, molestie dignissim sapien. Ut ultrices accumsan massa vitae consectetur. Maecenas ut lobortis sem. Nulla blandit pulvinar gravida. Donec volutpat dui ipsum, eget porttitor nisi egestas sit amet.'
 			),
 			'test.jpg'
@@ -69,7 +69,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	public function test_first_img_missing() {
 
 		$this->assertEquals(
-			com\davidmichaelross\DavesWordPressLiveSearch\firstImg(
+			com\davidmichaelross\DavesWordPressLiveSearch\first_img(
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ullamcorper est ac lacinia convallis. Nullam tortor dolor, viverra ac turpis eget, luctus iaculis orci. Sed fringilla quis libero id interdum. Etiam elementum, turpis quis aliquet aliquet, est leo imperdiet dui, ac vestibulum est nulla eget nisi. Duis rhoncus orci eget nulla luctus tempus. Etiam augue lacus, pharetra in libero non, molestie dignissim sapien. Ut ultrices accumsan massa vitae consectetur. Maecenas ut lobortis sem. Nulla blandit pulvinar gravida. Donec volutpat dui ipsum, eget porttitor nisi egestas sit amet.'
 			),
 			''
@@ -83,7 +83,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	public function test_first_two_imgs() {
 
 		$this->assertEquals(
-			com\davidmichaelross\DavesWordPressLiveSearch\firstImg(
+			com\davidmichaelross\DavesWordPressLiveSearch\first_img(
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ullamcorper est ac lacinia convallis. <img src="test.jpg" />Nullam tortor dolor, viverra ac turpis eget, luctus iaculis orci. Sed fringilla quis libero id interdum. Etiam elementum, turpis quis aliquet aliquet, est leo imperdiet dui, ac vestibulum est nulla eget nisi. Duis rhoncus orci eget nulla luctus tempus. Etiam augue lacus, pharetra in libero non, molestie dignissim sapien. Ut ultrices accumsan massa vitae consectetur. Maecenas ut lobortis sem. Nulla blandit pulvinar <img src="test2.gif" />gravida. Donec volutpat dui ipsum, eget porttitor nisi egestas sit amet.'
 			),
 			'test.jpg'
