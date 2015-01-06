@@ -49,7 +49,6 @@ function add_settings_page() {
 		'manage_options',
 		SETTINGS_PAGE_SLUG,
 		__NAMESPACE__ . '\render_page'
-
 	);
 }
 
