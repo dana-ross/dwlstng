@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			parent = elem.offsetParent,
 			loop_guard = 0;
 
-		while (parent != document.body) {
+		while (parent && parent != document.body) {
 			loop_guard += 1;
 			if (200 < loop_guard) {
 				break;
