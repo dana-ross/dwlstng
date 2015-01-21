@@ -8,3 +8,6 @@ checks:
 tools:
     external_code_coverage:
         runs: 2    # Scrutinizer will wait for two code coverage submissions
+
+filter:
+    paths: [dwlstng.php, inc/*, tpl/*]
