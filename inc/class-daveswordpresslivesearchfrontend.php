@@ -123,7 +123,7 @@ function template_redirect() {
 
 	try {
 		wp_send_json_success( do_search( $wp_query->query_vars[ FRONT_END_ENDPOINT ] ) );
-	} catch ( Exception $e ) {
+	} catch ( \Exception $e ) {
 		wp_send_json_error( $e->getMessage() );
 	}
 
