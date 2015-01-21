@@ -122,7 +122,7 @@ function template_redirect() {
 	}
 
 	try {
-		wp_send_json_success( do_search( $wp_query->query_vars[ FRONT_END_ENDPOINT ] ) );
+		wp_send_json_success( do_search() );
 	} catch ( \Exception $e ) {
 		wp_send_json_error( $e->getMessage() );
 	}
@@ -131,7 +131,7 @@ function template_redirect() {
 
 add_action( 'template_redirect', __NAMESPACE__ . '\template_redirect' );
 
-function do_search( $term ) {
+function do_search() {
 
 	global $wp_query;
 
