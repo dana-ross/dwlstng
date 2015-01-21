@@ -4,3 +4,7 @@ checks:
     php:
         code_rating: true
         duplication: true
+
+tools:
+    external_code_coverage:
+        runs: 2    # Scrutinizer will wait for two code coverage submissions
