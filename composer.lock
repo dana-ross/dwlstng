@@ -303,17 +303,17 @@
         },
         {
             "name": "symfony/config",
-            "version": "v2.5.8",
+            "version": "v2.5.9",
             "target-dir": "Symfony/Component/Config",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Config.git",
-                "reference": "92f0b4c625b8c42d394b53f879d2795d84bb8c4f"
+                "reference": "c7309e33b719433d5cf3845d0b5b9608609d8c8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/92f0b4c625b8c42d394b53f879d2795d84bb8c4f",
-                "reference": "92f0b4c625b8c42d394b53f879d2795d84bb8c4f",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/c7309e33b719433d5cf3845d0b5b9608609d8c8e",
+                "reference": "c7309e33b719433d5cf3845d0b5b9608609d8c8e",
                 "shasum": ""
             },
             "require": {
@@ -347,21 +347,21 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2014-12-02 20:15:53"
+            "time": "2015-01-03 08:01:13"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v2.5.8",
+            "version": "v2.5.9",
             "target-dir": "Symfony/Component/DependencyInjection",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DependencyInjection.git",
-                "reference": "b4afda3c24867a17f93237ac1fcce917cc9d7695"
+                "reference": "b04e6782962f8e3312274fd16fb6b37a8210a1c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/b4afda3c24867a17f93237ac1fcce917cc9d7695",
-                "reference": "b4afda3c24867a17f93237ac1fcce917cc9d7695",
+                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/b04e6782962f8e3312274fd16fb6b37a8210a1c3",
+                "reference": "b04e6782962f8e3312274fd16fb6b37a8210a1c3",
                 "shasum": ""
             },
             "require": {
@@ -369,8 +369,8 @@
             },
             "require-dev": {
                 "symfony/config": "~2.2",
-                "symfony/expression-language": "~2.4",
-                "symfony/yaml": "~2.0"
+                "symfony/expression-language": "~2.4,>=2.4.10",
+                "symfony/yaml": "~2.1"
             },
             "suggest": {
                 "symfony/config": "",
@@ -404,21 +404,21 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "http://symfony.com",
-            "time": "2014-12-02 21:48:32"
+            "time": "2015-01-05 08:51:41"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.5.8",
+            "version": "v2.5.9",
             "target-dir": "Symfony/Component/Filesystem",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "e5fc05a3a1dbb4ea0bed80fe7bd21ba3cab88c42"
+                "reference": "d3c24d7d6e9c342008d8421b2fade460311647ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/e5fc05a3a1dbb4ea0bed80fe7bd21ba3cab88c42",
-                "reference": "e5fc05a3a1dbb4ea0bed80fe7bd21ba3cab88c42",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/d3c24d7d6e9c342008d8421b2fade460311647ea",
+                "reference": "d3c24d7d6e9c342008d8421b2fade460311647ea",
                 "shasum": ""
             },
             "require": {
@@ -451,7 +451,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2014-12-02 20:15:53"
+            "time": "2015-01-03 21:04:44"
         },
         {
             "name": "wp-coding-standards/wpcs",
