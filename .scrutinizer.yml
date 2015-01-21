@@ -7,7 +7,7 @@ checks:
 
 tools:
     external_code_coverage:
-        runs: 2    # Scrutinizer will wait for two code coverage submissions
+        timeout: 600    # Timeout in seconds.
 
 filter:
     paths: [dwlstng.php, inc/*, tpl/*]
