@@ -91,4 +91,37 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 
 	}
 
+	/**
+	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\parse_request
+	 */
+	public function test_parse_request() {
+
+		global $wp_query;
+		$wp_query = new stdClass();
+		$wp_query->query_vars = array();
+		$wp_query->query_vars[ com\davidmichaelross\DavesWordPressLiveSearch\FRONT_END_ENDPOINT ] = 'Supercalifragilisticexpialidocious';
+
+		$this->assertEquals(
+			'Supercalifragilisticexpialidocious',
+			com\davidmichaelross\DavesWordPressLiveSearch\parse_request($wp_query)->query_vars['s']
+		);
+
+	}
+
+	/**
+	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\parse_request
+	 */
+	public function test_parse_request_no_term() {
+
+		global $wp_query;
+		$wp_query = new stdClass();
+		$wp_query->query_vars = array();
+
+		$this->assertArrayNotHasKey(
+			's',
+			com\davidmichaelross\DavesWordPressLiveSearch\parse_request($wp_query)->query_vars
+		);
+
+	}
+
 }
