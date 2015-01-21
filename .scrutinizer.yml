@@ -8,6 +8,8 @@ checks:
 tools:
     external_code_coverage:
         timeout: 600    # Timeout in seconds.
+    tools:
+        js_hint: true
 
 filter:
     paths: [dwlstng.php, inc/*, tpl/*]
