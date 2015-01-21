@@ -80,4 +80,85 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field
+	 */
+	public function test_checkbox_field_checked() {
+
+		ob_start();
+		com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field( array(
+			'name'  => 'test_name',
+			'id'    => 'test_id',
+			'class' => 'test_class',
+			'value' => 'true',
+		) );
+		$checkbox_html = '<div>' . ob_get_clean() . '</div>';
+
+		$this->assertXmlStringEqualsXmlString(
+			'<div>' .
+			'<input type="hidden" name="test_name" id="test_id" value="false" />' .
+			'<input type="checkbox" name="test_name" id="test_id" class="test_class" value="true" checked="checked" />' .
+			'</div>',
+			$checkbox_html
+		);
+
+	}
+
+	/**
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field
+	 */
+	public function test_checkbox_field_not_checked() {
+
+		ob_start();
+		com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field( array(
+			'name'  => 'test_name',
+			'id'    => 'test_id',
+			'class' => 'test_class',
+			'value' => 'false',
+		) );
+		$checkbox_html = '<div>' . ob_get_clean() . '</div>';
+
+		$this->assertXmlStringEqualsXmlString(
+			'<div>' .
+			'<input type="hidden" name="test_name" id="test_id" value="false" />' .
+			'<input type="checkbox" name="test_name" id="test_id" class="test_class" value="true" />' .
+			'</div>',
+			$checkbox_html
+		);
+
+	}
+
+	/**
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field
+	 */
+	public function test_checkbox_field_no_id() {
+
+		ob_start();
+		com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field( array(
+			'name'  => 'test_name',
+			'class' => 'test_class',
+			'value' => 'true',
+		) );
+		$checkbox_html = '<div>' . ob_get_clean() . '</div>';
+
+		$this->assertXmlStringEqualsXmlString(
+			'<div>' .
+			'<input type="hidden" name="test_name" id="test_name" value="false" />' .
+			'<input type="checkbox" name="test_name" id="test_name" class="test_class" value="true" checked="checked" />' .
+			'</div>',
+			$checkbox_html
+		);
+
+	}
+
+	/**
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\default_id_from_name
+	 */
+	public function test_default_id_from_name() {
+		$this->assertEquals(
+			com\davidmichaelross\DavesWordPressLiveSearch\default_id_from_name(array('name' => 'test'))['id'],
+			'test'
+		);
+	}
+
 }
