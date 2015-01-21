@@ -50,7 +50,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\firstImg
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\first_img
 	 */
 	public function test_first_img_valid() {
 
@@ -64,7 +64,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\firstImg
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\first_img
 	 */
 	public function test_first_img_missing() {
 
@@ -78,7 +78,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\firstImg
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\first_img
 	 */
 	public function test_first_two_imgs() {
 
