@@ -2,7 +2,7 @@
 
 /**
  * Test replacement for sanitize_hex_color in WordPress core
- * @covers        com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color
+ * @covers        ::com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color
  * @backupGlobals disabled
  */
 class SanitizeHexColorTest extends PHPUnit_Framework_TestCase {

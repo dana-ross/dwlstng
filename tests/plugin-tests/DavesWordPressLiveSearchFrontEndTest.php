@@ -11,7 +11,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\rewrite_endpoint
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\rewrite_endpoint
 	 */
 	public function test_rewrite_endpoint() {
 
@@ -23,7 +23,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\rewrite_query_string
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\rewrite_query_string
 	 */
 	public function test_rewrite_query_string() {
 
@@ -35,7 +35,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\add_query_vars
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\add_query_vars
 	 */
 	public function test_add_query_vars() {
 
@@ -50,7 +50,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\firstImg
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\firstImg
 	 */
 	public function test_first_img_valid() {
 
@@ -64,7 +64,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\firstImg
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\firstImg
 	 */
 	public function test_first_img_missing() {
 
@@ -78,7 +78,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\firstImg
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\firstImg
 	 */
 	public function test_first_two_imgs() {
 
@@ -92,7 +92,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\parse_request
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\parse_request
 	 */
 	public function test_parse_request() {
 
@@ -109,7 +109,7 @@ class DavesWordPressLiveSearchFrontEndTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers com\davidmichaelross\DavesWordPressLiveSearch\parse_request
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\parse_request
 	 */
 	public function test_parse_request_no_term() {
 

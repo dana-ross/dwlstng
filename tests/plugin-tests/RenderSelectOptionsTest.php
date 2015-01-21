@@ -2,7 +2,7 @@
 
 /**
  * Test course_date_to_formatted_dates() in functions.php
- * @covers        com\davidmichaelross\DavesWordPressLiveSearch\render_select_options
+ * @covers        ::com\davidmichaelross\DavesWordPressLiveSearch\render_select_options
  * @backupGlobals disabled
  */
 class RenderSelectOptionsTest extends PHPUnit_Framework_TestCase {
