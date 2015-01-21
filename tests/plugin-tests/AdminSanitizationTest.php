@@ -152,16 +152,94 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\text_field
+	 */
+	public function test_text_field() {
+
+		ob_start();
+		com\davidmichaelross\DavesWordPressLiveSearch\text_field( array(
+			'type'  => 'text',
+			'name'  => 'test_name',
+			'id'    => 'test_id',
+			'value' => 'test_value',
+			'class' => 'test_class',
+		) );
+		$text_field_html = ob_get_clean();
+
+		$this->assertXmlStringEqualsXmlString(
+			'<input type="text" id="test_id" name="test_name" value="test_value" class="test_class" />',
+			$text_field_html
+		);
+
+	}
+
+	/**
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\text_field
+	 */
+	public function test_text_field_number() {
+
+		ob_start();
+		com\davidmichaelross\DavesWordPressLiveSearch\text_field( array(
+			'type'  => 'number',
+			'name'  => 'test_name',
+			'id'    => 'test_id',
+			'value' => 'test_value',
+			'class' => 'test_class',
+		) );
+		$text_field_html = ob_get_clean();
+
+		$this->assertXmlStringEqualsXmlString(
+			'<input type="number" id="test_id" name="test_name" value="test_value" class="test_class" />',
+			$text_field_html
+		);
+
+	}
+
+	/**
 	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\default_id_from_name
 	 */
 	public function test_default_id_from_name() {
-		$options = com\davidmichaelross\DavesWordPressLiveSearch\default_id_from_name(array('name' => 'test'));
+		$options = com\davidmichaelross\DavesWordPressLiveSearch\default_id_from_name( array( 'name' => 'test' ) );
 
-		$this->assertArrayHasKey('id', $options);
+		$this->assertArrayHasKey( 'id', $options );
 
 		$this->assertEquals(
 			$options['id'],
 			'test'
+		);
+
+	}
+
+	/**
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\default_input_field_attributes
+	 */
+	public function test_default_input_field_attributes() {
+
+		$this->assertArrayHasKey(
+			'name',
+			com\davidmichaelross\DavesWordPressLiveSearch\default_input_field_attributes( array() )
+		);
+
+		$this->assertArrayHasKey(
+			'class',
+			com\davidmichaelross\DavesWordPressLiveSearch\default_input_field_attributes( array() )
+		);
+
+		$this->assertArrayHasKey(
+			'value',
+			com\davidmichaelross\DavesWordPressLiveSearch\default_input_field_attributes( array() )
+		);
+
+	}
+
+	/**
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\default_input_field_attributes
+	 */
+	public function test_default_input_field_attributes_extra() {
+
+		$this->assertArrayHasKey(
+			'marco',
+			com\davidmichaelross\DavesWordPressLiveSearch\default_input_field_attributes( array( 'marco' => 'polo' ) )
 		);
 
 	}
