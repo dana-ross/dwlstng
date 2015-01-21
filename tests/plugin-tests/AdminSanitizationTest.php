@@ -155,10 +155,15 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\default_id_from_name
 	 */
 	public function test_default_id_from_name() {
+		$options = com\davidmichaelross\DavesWordPressLiveSearch\default_id_from_name(array('name' => 'test'));
+
+		$this->assertArrayHasKey('id', $options);
+
 		$this->assertEquals(
-			com\davidmichaelross\DavesWordPressLiveSearch\default_id_from_name(array('name' => 'test'))['id'],
+			$options['id'],
 			'test'
 		);
+
 	}
 
 }
