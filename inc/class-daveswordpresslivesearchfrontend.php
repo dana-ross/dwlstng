@@ -173,7 +173,7 @@ function get_post_thumbnail( $post ) {
 
 	}
 
-	if ( $hasThumbnailSet ) {
+	if ( $hasThumbnailSet && isset( $postImageData[0] ) ) {
 
 		$attachment_thumbnail = $postImageData[0];
 
