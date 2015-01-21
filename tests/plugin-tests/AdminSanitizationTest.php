@@ -244,4 +244,26 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 
 	}
 
+	/**
+	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\select_field
+	 */
+	public function test_select_field() {
+
+		ob_start();
+		com\davidmichaelross\DavesWordPressLiveSearch\select_field( array(
+			'id'      => 'test_id',
+			'name'    => 'test_name',
+			'options' => array( 'test_value' => 'test_label' ),
+			'value'   => 'test_value',
+		) );
+		$select_field_html = ob_get_clean();
+
+		$this->assertXmlStringEqualsXmlString(
+			'<select id="test_id" name="test_name">' .
+			'<option value="test_value" selected="selected">test_label</option>' .
+			'</select>',
+			$select_field_html
+		);
+
+	}
 }

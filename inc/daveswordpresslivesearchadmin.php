@@ -339,7 +339,7 @@ function select_field( array $options ) {
 	);
 
 	echo '<select id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '">' .
-	     wp_kses( render_select_options( $options['options'] ), array( 'option' => array( 'value' ) ) ) .
+	     wp_kses( render_select_options( $options['options'], $options['value'] ), array( 'option' => array( 'value' => array(), 'selected' => array() ) ) ) .
 	     '</select>';
 
 }
