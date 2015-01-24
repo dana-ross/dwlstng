@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( __NAMESPACE__ . '\FRONT_END_ENDPOINT', 'dwls-ajax' );
+define( __NAMESPACE__ . '\FIRST_IMG_META_FIELD', 'dwls_first_image');
 
 function wp_enqueue_styles() {
 
@@ -179,7 +180,7 @@ function get_post_thumbnail( $post ) {
 
 	} else {
 
-		$firstImageMeta = get_post_meta( $post->ID, '_dwls_first_image', true );
+		$firstImageMeta = get_post_meta( $post->ID, FIRST_IMG_META_FIELD, true );
 		if ( $firstImageMeta ) {
 			$attachment_thumbnail = $firstImageMeta;
 		} else {
@@ -207,13 +208,13 @@ function update_first_image_postmeta( $post_id, $post ) {
 	}
 	$content              = str_replace( ']]>', ']]&gt;', $content );
 	$attachment_thumbnail = first_img( $content );
-	update_post_meta( $post_id, '_dwls_first_image', $attachment_thumbnail );
+	update_post_meta( $post_id, FIRST_IMG_META_FIELD, $attachment_thumbnail );
 
 	return $attachment_thumbnail;
 
 }
 
-add_action( 'save_post', __NAMESPACE__ . '\updateFirstImagePostmeta', 10, 2 );
+add_action( 'save_post', __NAMESPACE__ . '\update_first_image_postmeta', 10, 2 );
 
 function first_img( $post_content ) {
 
