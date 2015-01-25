@@ -27,13 +27,14 @@ class QueryTest extends PHPUnit_Framework_TestCase {
 		$wp_query->shouldReceive( 'get_posts' )->once()->andReturn( array( $mock_post ) );
 
 		\WP_Mock::wpFunction( 'get_permalink', array(
-			'tries' => 1,
+			'tries'  => 1,
 			'return' => 'http://www.example.com/blog/1',
 		) );
 		\WP_Mock::wpFunction( 'get_post_thumbnail' );
 		\WP_Mock::wpPassthruFunction( 'wp_trim_words' );
 
-		$first_search_result= array_pop(com\davidmichaelross\DavesWordPressLiveSearch\do_search());
+		$search_results      = com\davidmichaelross\DavesWordPressLiveSearch\do_search();
+		$first_search_result = array_pop( $search_results );
 
 		$this->assertEquals(
 			$this->mock_post()->ID,
