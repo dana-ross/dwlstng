@@ -148,11 +148,11 @@ function do_search() {
 		$post_data[] = array(
 			'ID'        => $post->ID,
 			'title'     => $post->post_title,
-			'excerpt'   => \wp_trim_words( $post->post_content, 55, false ),
-			'permalink' => \get_permalink( $post->ID ),
+			'excerpt'   => wp_trim_words( $post->post_content, 55, false ),
+			'permalink' => get_permalink( $post->ID ),
 			'date'      => $post->post_date,
 			'post_type' => $post->post_type,
-			'thumbnail' => \get_post_thumbnail( $post ),
+			'thumbnail' => get_post_thumbnail( $post ),
 		);
 
 	}
