@@ -7,7 +7,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( __NAMESPACE__ . '\FRONT_END_ENDPOINT', 'dwls-ajax' );
-define( __NAMESPACE__ . '\FIRST_IMG_META_FIELD', 'dwls_first_image');
+define( __NAMESPACE__ . '\FIRST_IMG_META_FIELD', 'dwls_first_image' );
+
+function register_front_end_hooks() {
+
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\wp_enqueue_styles' );
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\wp_enqueue_scripts' );
+	add_action( 'init', __NAMESPACE__ . '\init' );
+	add_filter( 'query_vars', __NAMESPACE__ . '\add_query_vars' );
+	add_filter( 'parse_request', __NAMESPACE__ . '\parse_request' );
+	add_action( 'template_redirect', __NAMESPACE__ . '\template_redirect' );
+	add_action( 'save_post', __NAMESPACE__ . '\update_first_image_postmeta', 10, 2 );
+
+}
+
+if ( ! defined( 'DWLS_UNIT_TEST' ) ) {
+	register_front_end_hooks();
+}
 
 function wp_enqueue_styles() {
 
@@ -20,8 +36,6 @@ function wp_enqueue_styles() {
 	);
 
 }
-
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\wp_enqueue_styles' );
 
 function wp_enqueue_scripts() {
 
@@ -72,15 +86,11 @@ function wp_enqueue_scripts() {
 
 }
 
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\wp_enqueue_scripts' );
-
 function init() {
 
 	add_rewrite_rule( rewrite_endpoint(), rewrite_query_string(), 'top' );
 
 }
-
-add_action( 'init', __NAMESPACE__ . '\init' );
 
 function rewrite_endpoint() {
 	return FRONT_END_ENDPOINT . '/([^/]*)';
@@ -98,8 +108,6 @@ function add_query_vars( $vars ) {
 
 }
 
-add_filter( 'query_vars', __NAMESPACE__ . '\add_query_vars' );
-
 function parse_request( $wp_query ) {
 
 	if ( ! isset( $wp_query->query_vars[ FRONT_END_ENDPOINT ] ) ) {
@@ -111,8 +119,6 @@ function parse_request( $wp_query ) {
 	return $wp_query;
 
 }
-
-add_filter( 'parse_request', __NAMESPACE__ . '\parse_request' );
 
 function template_redirect() {
 
@@ -130,8 +136,6 @@ function template_redirect() {
 
 }
 
-add_action( 'template_redirect', __NAMESPACE__ . '\template_redirect' );
-
 function do_search() {
 
 	global $wp_query;
@@ -144,11 +148,11 @@ function do_search() {
 		$post_data[] = array(
 			'ID'        => $post->ID,
 			'title'     => $post->post_title,
-			'excerpt'   => wp_trim_words( $post->post_content, 55, false ),
-			'permalink' => get_permalink( $post->ID ),
+			'excerpt'   => \wp_trim_words( $post->post_content, 55, false ),
+			'permalink' => \get_permalink( $post->ID ),
 			'date'      => $post->post_date,
 			'post_type' => $post->post_type,
-			'thumbnail' => get_post_thumbnail( $post ),
+			'thumbnail' => \get_post_thumbnail( $post ),
 		);
 
 	}
@@ -214,8 +218,6 @@ function update_first_image_postmeta( $post_id, $post ) {
 
 }
 
-add_action( 'save_post', __NAMESPACE__ . '\update_first_image_postmeta', 10, 2 );
-
 function first_img( $post_content ) {
 
 	$matches = array();
@@ -238,10 +240,11 @@ function daves_wordpress_live_search_activate() {
 	flush_rewrite_rules();
 }
 
-register_activation_hook( __FILE__, __NAMESPACE__ . '\daves_wordpress_live_search_activate' );
-
 function daves_wordpress_live_search_deactivate() {
 	flush_rewrite_rules();
 }
 
-register_deactivation_hook( __FILE__, __NAMESPACE__ . '\daves_wordpress_live_search_deactivate' );
+if ( ! defined( 'DWLS_UNIT_TEST' ) ) {
+	register_activation_hook( __FILE__, __NAMESPACE__ . '\daves_wordpress_live_search_activate' );
+	register_deactivation_hook( __FILE__, __NAMESPACE__ . '\daves_wordpress_live_search_deactivate' );
+}
