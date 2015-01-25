@@ -85,6 +85,14 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_checkbox_field_checked() {
 
+		\WP_Mock::wpPassthruFunction( 'esc_attr' );
+		\WP_Mock::wpPassthruFunction( 'esc_html' );
+		\WP_Mock::wpFunction('checked', array(
+			'times' => 1,
+			'return' => 'checked="checked"',
+		));
+		\WP_Mock::wpPassthruFunction('wp_kses');
+
 		ob_start();
 		com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field( array(
 			'name'  => 'test_name',
@@ -108,6 +116,16 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field
 	 */
 	public function test_checkbox_field_not_checked() {
+
+		\WP_Mock::wpPassthruFunction( 'esc_attr' );
+		\WP_Mock::wpPassthruFunction( 'esc_html' );
+		\WP_Mock::wpFunction('checked', array(
+			'return_in_order' => array(
+				'',
+				'checked="checked"',
+			),
+		));
+		\WP_Mock::wpPassthruFunction('wp_kses');
 
 		ob_start();
 		com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field( array(
@@ -133,6 +151,14 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_checkbox_field_no_id() {
 
+		\WP_Mock::wpPassthruFunction( 'esc_attr' );
+		\WP_Mock::wpPassthruFunction( 'esc_html' );
+		\WP_Mock::wpFunction('checked', array(
+			'times' => 1,
+			'return' => 'checked="checked"',
+		));
+		\WP_Mock::wpPassthruFunction('wp_kses');
+
 		ob_start();
 		com\davidmichaelross\DavesWordPressLiveSearch\checkbox_field( array(
 			'name'  => 'test_name',
@@ -156,6 +182,8 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_text_field() {
 
+		\WP_Mock::wpPassthruFunction( 'esc_attr' );
+
 		ob_start();
 		com\davidmichaelross\DavesWordPressLiveSearch\text_field( array(
 			'type'  => 'text',
@@ -177,6 +205,8 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\text_field
 	 */
 	public function test_text_field_number() {
+
+		\WP_Mock::wpPassthruFunction( 'esc_attr' );
 
 		ob_start();
 		com\davidmichaelross\DavesWordPressLiveSearch\text_field( array(
@@ -248,6 +278,14 @@ class AdminSanitizationTest extends PHPUnit_Framework_TestCase {
 	 * @covers ::com\davidmichaelross\DavesWordPressLiveSearch\select_field
 	 */
 	public function test_select_field() {
+
+		\WP_Mock::wpFunction('selected', array(
+			'return' => 'selected="selected"',
+		));
+
+		\WP_Mock::wpPassthruFunction('wp_kses');
+		\WP_Mock::wpPassthruFunction('esc_html');
+		\WP_Mock::wpPassthruFunction('esc_attr');
 
 		ob_start();
 		com\davidmichaelross\DavesWordPressLiveSearch\select_field( array(

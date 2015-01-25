@@ -9,6 +9,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( __NAMESPACE__ . '\option_group', 'daves-wordpress-live-search' );
 define( __NAMESPACE__ . '\SETTINGS_PAGE_SLUG', 'daves-wordpress-live-search' );
 
+function register_admin_hooks() {
+	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\admin_enqueue_scripts' );
+	add_action( 'admin_menu', __NAMESPACE__ . '\add_settings_page' );
+	add_action( 'admin_init', __NAMESPACE__ . '\register_settings' );
+}
+
+if ( ! defined( 'DWLS_UNIT_TEST' ) ) {
+	register_admin_hooks();
+}
+
 /**
  * Contains the slug of the settings page once it's registered
  *
@@ -40,8 +50,6 @@ function admin_enqueue_scripts() {
 
 }
 
-add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\admin_enqueue_scripts' );
-
 function add_settings_page() {
 	$GLOBALS['_settings_page_hook'] = add_options_page(
 		'Live Search',
@@ -51,8 +59,6 @@ function add_settings_page() {
 		__NAMESPACE__ . '\render_page'
 	);
 }
-
-add_action( 'admin_menu', __NAMESPACE__ . '\add_settings_page' );
 
 function register_settings() {
 
@@ -306,8 +312,6 @@ function register_settings() {
 
 }
 
-add_action( 'admin_init', __NAMESPACE__ . '\register_settings' );
-
 /**
  * @param array $extras
  *
@@ -324,7 +328,7 @@ function text_field( $options ) {
 		default_id_from_name( $options )
 	);
 
-	echo '<input type="' . esc_attr( $options['type'] ) . '" id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '" value="' . esc_attr( $options['value'] ) . '" class="' . esc_attr( $options['class'] ) . '" />';
+	echo '<input type="' . \esc_attr( $options['type'] ) . '" id="' . \esc_attr( $options['id'] ) . '" name="' . \esc_attr( $options['name'] ) . '" value="' . \esc_attr( $options['value'] ) . '" class="' . \esc_attr( $options['class'] ) . '" />';
 
 }
 
@@ -338,7 +342,7 @@ function select_field( array $options ) {
 		default_id_from_name( $options )
 	);
 
-	echo '<select id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '">' .
+	echo '<select id="' . \esc_attr( $options['id'] ) . '" name="' . \esc_attr( $options['name'] ) . '">' .
 	     wp_kses( render_select_options( $options['options'], $options['value'] ), array( 'option' => array( 'value' => array(), 'selected' => array() ) ) ) .
 	     '</select>';
 
@@ -357,7 +361,7 @@ function render_select_options( array $options, $selected_value = null ) {
 	return ( array_walk(
 		$options,
 		function ( $label, $value ) use ( &$html, $selected_value ) {
-			$html .= '<option value="' . esc_attr( $value ) . '" ' . selected( $selected_value, $value, false ) . '>' . esc_html( $label ) . '</option>';
+			$html .= '<option value="' . \esc_attr( $value ) . '" ' . selected( $selected_value, $value, false ) . '>' . esc_html( $label ) . '</option>';
 		}
 	) ) ? $html : '';
 
@@ -376,8 +380,8 @@ function checkbox_field( array $options ) {
 		default_id_from_name( $options )
 	);
 
-	echo '<input type="hidden" name="' . esc_attr( $options['name'] ) . '" id="' . esc_attr( $options['id'] ) . '" value="false" />' .
-	     '<input type="checkbox" name="' . esc_attr( $options['name'] ) . '" id="' . esc_attr( $options['id'] ) . '" class="' . esc_attr( $options['class'] ) . '" value="true" ' . checked( 'true', $options['value'], false ) . '/>';
+	echo '<input type="hidden" name="' . \esc_attr( $options['name'] ) . '" id="' . \esc_attr( $options['id'] ) . '" value="false" />' .
+	     '<input type="checkbox" name="' . \esc_attr( $options['name'] ) . '" id="' . \esc_attr( $options['id'] ) . '" class="' . \esc_attr( $options['class'] ) . '" value="true" ' . checked( 'true', $options['value'], false ) . '/>';
 
 }
 
