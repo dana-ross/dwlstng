@@ -1,9 +1,10 @@
 <ul id="dwls-results">
 	<% for(result_index in results) { if(results.hasOwnProperty(result_index)) { %>
-		<li class="dwls-result">
-			<div class="dwls_thumbnail_wrapper" style="background:url(<%= results[result_index].thumbnail %>);"></div>
-			<div class="dwls_title"><%= results[result_index].title %></div>
-			<div class="dwls_excerpt"><%= results[result_index].excerpt %></div>
+		<li class="dwls-result"><a href="<%= results[result_index].permalink %>">
+				<div class="dwls_thumbnail_wrapper" style="background:url(<%= results[result_index].thumbnail %>);"></div>
+				<div class="dwls_title"><%= results[result_index].title %></div>
+				<div class="dwls_excerpt"><%= results[result_index].excerpt %></div>
+			</a>
 		</li>
 	<% } } %>
 	<% if(results && results.length) { %>
