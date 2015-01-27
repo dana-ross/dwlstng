@@ -43,6 +43,7 @@ function wp_enqueue_styles() {
 }
 
 function generate_theme_css() {
+
 	$GLOBALS['_settings_page_hook'] = 'settings_page_daves-wordpress-live-search';
 
 	$results_width   = get_option( $GLOBALS['_settings_page_hook'] . '_results_width', 300 );
@@ -55,7 +56,10 @@ function generate_theme_css() {
 	$footer_fg_color = get_option( $GLOBALS['_settings_page_hook'] . '_footer_fg_color' );
 	$shadow          = get_option( $GLOBALS['_settings_page_hook'] . '_shadow', false );
 
+	ob_start();
 	include DWLS_TNG_PATH . '/tpl/custom.tpl.php';
+
+	return ob_get_clean();
 
 }
 
