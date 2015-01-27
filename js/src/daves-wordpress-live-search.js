@@ -171,6 +171,36 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	// Register handlers
+	document.addEventListener('click', function (e) {
+		for (var search_boxes_index in search_boxes) {
+			if (search_boxes.hasOwnProperty(search_boxes_index)) {
+
+				if (!(search_boxes[search_boxes_index].nodeName)) {
+					continue;
+				}
+
+				if (e.target === search_boxes[search_boxes_index]) {
+					return;
+				}
+
+				if (search_boxes[search_boxes_index].contains(e.target)) {
+					return;
+				}
+
+			}
+		}
+		if ('dwls-results' === e.target.id) {
+			return;
+		}
+
+		if (document.getElementById('dwls-results') && document.getElementById('dwls-results').contains(e.target)) {
+			return;
+		}
+
+		hide_search();
+
+	});
+
 	for (var search_boxes_index in search_boxes) {
 		if (search_boxes.hasOwnProperty(search_boxes_index)) {
 
@@ -184,10 +214,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			search_boxes[search_boxes_index].autocomplete = 'off';
 			search_boxes[search_boxes_index].addEventListener('keyup', do_search);
-			search_boxes[search_boxes_index].addEventListener('blur', hide_search);
-
 		}
 
 	}
+
 
 });
