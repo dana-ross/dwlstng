@@ -35,6 +35,28 @@ function wp_enqueue_styles() {
 		'screen'
 	);
 
+	wp_add_inline_style(
+		'daves-wordpress-live-search',
+		generate_theme_css()
+	);
+
+}
+
+function generate_theme_css() {
+	$GLOBALS['_settings_page_hook'] = 'settings_page_daves-wordpress-live-search';
+
+	$results_width   = get_option( $GLOBALS['_settings_page_hook'] . '_results_width', 300 );
+	$title_color     = get_option( $GLOBALS['_settings_page_hook'] . '_title_color' );
+	$fg_color        = get_option( $GLOBALS['_settings_page_hook'] . '_fg_color' );
+	$bg_color        = get_option( $GLOBALS['_settings_page_hook'] . '_bg_color' );
+	$hover_bg_color  = get_option( $GLOBALS['_settings_page_hook'] . '_hover_bg_color' );
+	$divider_color   = get_option( $GLOBALS['_settings_page_hook'] . '_divider_color' );
+	$footer_bg_color = get_option( $GLOBALS['_settings_page_hook'] . '_footer_bg_color' );
+	$footer_fg_color = get_option( $GLOBALS['_settings_page_hook'] . '_footer_fg_color' );
+	$shadow          = get_option( $GLOBALS['_settings_page_hook'] . '_shadow', false );
+
+	include DWLS_TNG_PATH . '/tpl/custom.tpl.php';
+
 }
 
 function wp_enqueue_scripts() {
