@@ -328,7 +328,7 @@ function text_field( $options ) {
 		default_id_from_name( $options )
 	);
 
-	echo '<input type="' . \esc_attr( $options['type'] ) . '" id="' . \esc_attr( $options['id'] ) . '" name="' . \esc_attr( $options['name'] ) . '" value="' . \esc_attr( $options['value'] ) . '" class="' . \esc_attr( $options['class'] ) . '" />';
+	echo '<input type="' . esc_attr( $options['type'] ) . '" id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '" value="' . esc_attr( $options['value'] ) . '" class="' . esc_attr( $options['class'] ) . '" />';
 
 }
 
@@ -342,7 +342,7 @@ function select_field( array $options ) {
 		default_id_from_name( $options )
 	);
 
-	echo '<select id="' . \esc_attr( $options['id'] ) . '" name="' . \esc_attr( $options['name'] ) . '">' .
+	echo '<select id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '">' .
 	     wp_kses( render_select_options( $options['options'], $options['value'] ), array( 'option' => array( 'value' => array(), 'selected' => array() ) ) ) .
 	     '</select>';
 
@@ -380,8 +380,8 @@ function checkbox_field( array $options ) {
 		default_id_from_name( $options )
 	);
 
-	echo '<input type="hidden" name="' . \esc_attr( $options['name'] ) . '" id="' . \esc_attr( $options['id'] ) . '" value="false" />' .
-	     '<input type="checkbox" name="' . \esc_attr( $options['name'] ) . '" id="' . \esc_attr( $options['id'] ) . '" class="' . \esc_attr( $options['class'] ) . '" value="true" ' . checked( 'true', $options['value'], false ) . '/>';
+	echo '<input type="hidden" name="' . esc_attr( $options['name'] ) . '" id="' . esc_attr( $options['id'] ) . '" value="false" />' .
+	     '<input type="checkbox" name="' . esc_attr( $options['name'] ) . '" id="' . esc_attr( $options['id'] ) . '" class="' . esc_attr( $options['class'] ) . '" value="true" ' . checked( 'true', $options['value'], false ) . '/>';
 
 }
 
