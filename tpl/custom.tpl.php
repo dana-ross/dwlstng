@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	width: <?php echo absint($results_width); ?>px;
 }
 
-#dwls-results li {
+#dwls-results .dwls-result {
 	color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($fg_color); ?>;
 	background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($bg_color); ?>;
 	border-bottom: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($divider_color); ?>;
@@ -24,11 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($hover_bg_color); ?>;
 }
 
-#dwls-results .dwls_title {
+#dwls-results li .dwls_title {
 	color: <?php echo sanitize_hex_color($title_color); ?>;
 }
 
-#dwls-results li.footer {
+#dwls-results .dwls-footer {
 	color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($footer_fg_color); ?>;
 	background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($footer_bg_color); ?>;
 }
