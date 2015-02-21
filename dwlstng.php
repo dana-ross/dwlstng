@@ -8,10 +8,6 @@ Author: Dave Ross
 Author URI: http://davidmichaelross.com
 */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( "Please don't try to access this file directly." );
-}
-
 define( 'DWLS_TNG_VERSION', '0.1.1' );
 define( 'DWLS_TNG_URL', plugin_dir_url( __FILE__ ) );
 define( 'DWLS_TNG_PATH', dirname( __FILE__ ) );
