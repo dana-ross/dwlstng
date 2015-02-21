@@ -1,4 +1,7 @@
-<?php namespace com\davidmichaelross\DavesWordPressLiveSearch; ?>
+<?php
+namespace com\davidmichaelross\DavesWordPressLiveSearch;
+
+?>
 <h2>Dave's WordPress Live Search</h2>
 <form action="options.php" method="post" class="daves-wordpress-live-search-settings-form" style="max-width: 550px;">
 	<?php
