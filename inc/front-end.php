@@ -198,7 +198,7 @@ function do_search() {
 				false
 			),
 			'permalink'       => get_permalink( $post->ID ),
-			'date'            => $post->post_date,
+			'date'            => date( 'c', strtotime( $post->post_date ) ),
 			'post_type'       => $post->post_type,
 			'thumbnail'       => get_post_thumbnail( $post ),
 		);
