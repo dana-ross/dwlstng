@@ -32,6 +32,11 @@ class QueryTest extends PHPUnit_Framework_TestCase {
 		) );
 		\WP_Mock::wpFunction( 'get_post_thumbnail' );
 		\WP_Mock::wpPassthruFunction( 'wp_trim_words' );
+		\WP_Mock::wpFunction( 'get_post_meta', array( 'tries' => 1, 'return' => '' ) );
+		\WP_Mock::wpFunction( 'wp_is_post_revision', array( 'tries' => 1, 'return' => false ) );
+		\WP_Mock::wpFunction( 'get_post' );
+		\WP_Mock::wpFunction( 'get_option', array( 'tries' => 1, 'return' => false ) );
+		\WP_Mock::wpFunction( 'update_post_meta', array( 'tries' => 1, 'return' => null ) );
 
 		$search_results      = com\davidmichaelross\DavesWordPressLiveSearch\do_search();
 		$first_search_result = array_pop( $search_results );
