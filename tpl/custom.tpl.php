@@ -16,9 +16,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	padding: .25em .5em;
 	color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($fg_color); ?>;
 	background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($bg_color); ?>;
-	border-bottom: 1px solid <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($divider_color); ?>;
+	border-top: 1px solid <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($divider_color); ?>;
 	<?php if('true' === \com\davidmichaelross\DavesWordPressLiveSearch\validate_boolean_string($shadow)) : ?>
 	<?php endif; ?>
+}
+
+#dwls-results .dwls-result:first-child {
+	border-top: none;
 }
 
 #dwls-results .dwls-result a {
