@@ -3,6 +3,9 @@
 		<li class="dwls-result"><a href="<%= results[result_index].permalink %>">
 				<div class="dwls_thumbnail_wrapper" style="background:url(<%= results[result_index].thumbnail %>);"></div>
 				<div class="dwls_title"><%= results[result_index].title %></div>
+				<% if(results[result_index].author_nicename) { %>
+					<div class="dwls_meta"><%= results[result_index].author_nicename %> <%= results[result_index].date %></div>
+				<% } %>
 				<div class="dwls_excerpt"><%= results[result_index].excerpt %></div>
 			</a>
 		</li>
