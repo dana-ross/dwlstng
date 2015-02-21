@@ -91,6 +91,7 @@ function register_settings() {
 			'name'  => SETTINGS_PAGE_SLUG . '_max_results',
 			'type'  => 'number',
 			'value' => get_option( SETTINGS_PAGE_SLUG . '_max_results', 10 ),
+			'description' => __( "Enter '0' for no limit", 'dwlstng' ),
 		)
 	);
 
