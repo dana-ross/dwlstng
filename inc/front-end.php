@@ -192,7 +192,11 @@ function do_search() {
 			'ID'              => $post->ID,
 			'author_nicename' => get_the_author_meta( 'user_nicename', $post->post_author ),
 			'title'           => $post->post_title,
-			'excerpt'         => wp_trim_words( $post->post_content, intval( get_option( SETTINGS_PAGE_SLUG . '_excerpt_length', 30 ) ), false ),
+			'excerpt'         => wp_trim_words(
+				wp_strip_all_tags( $post->post_content, true ),
+				intval( get_option( SETTINGS_PAGE_SLUG . '_excerpt_length', 30 ) ),
+				false
+			),
 			'permalink'       => get_permalink( $post->ID ),
 			'date'            => $post->post_date,
 			'post_type'       => $post->post_type,
