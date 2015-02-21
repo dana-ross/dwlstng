@@ -63,59 +63,59 @@ function register_settings() {
 	);
 
 	// Headlines & Messages
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_max_results', 'absint' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_results_direction', __NAMESPACE__ . '\validate_results_direction' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_minchars', 'absint' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_display_post_meta', __NAMESPACE__ . '\validate_boolean_string' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_display_thumbnail', __NAMESPACE__ . '\validate_boolean_string' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_display_excerpt', __NAMESPACE__ . '\validate_boolean_string' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_excerpt_length', 'absint' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_more_results', __NAMESPACE__ . '\validate_boolean_string' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_results_width', 'absint' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_title_color', __NAMESPACE__ . '\sanitize_hex_color' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_fg_color', __NAMESPACE__ . '\sanitize_hex_color' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_bg_color', __NAMESPACE__ . '\sanitize_hex_color' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_hover_bg_color', __NAMESPACE__ . '\sanitize_hex_color' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_divider_color', __NAMESPACE__ . '\sanitize_hex_color' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_footer_bg_color', __NAMESPACE__ . '\sanitize_hex_color' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_footer_fg_color', __NAMESPACE__ . '\sanitize_hex_color' );
-	register_setting( option_group, $GLOBALS['_settings_page_hook'] . '_shadow', __NAMESPACE__ . '\validate_boolean_string' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_max_results', 'absint' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_results_direction', __NAMESPACE__ . '\validate_results_direction' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_minchars', 'absint' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_display_post_meta', __NAMESPACE__ . '\validate_boolean_string' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_display_thumbnail', __NAMESPACE__ . '\validate_boolean_string' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_display_excerpt', __NAMESPACE__ . '\validate_boolean_string' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_excerpt_length', 'absint' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_more_results', __NAMESPACE__ . '\validate_boolean_string' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_results_width', 'absint' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_title_color', __NAMESPACE__ . '\sanitize_hex_color' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_fg_color', __NAMESPACE__ . '\sanitize_hex_color' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_bg_color', __NAMESPACE__ . '\sanitize_hex_color' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_hover_bg_color', __NAMESPACE__ . '\sanitize_hex_color' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_divider_color', __NAMESPACE__ . '\sanitize_hex_color' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_footer_bg_color', __NAMESPACE__ . '\sanitize_hex_color' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_footer_fg_color', __NAMESPACE__ . '\sanitize_hex_color' );
+	register_setting( option_group, SETTINGS_PAGE_SLUG . '_shadow', __NAMESPACE__ . '\validate_boolean_string' );
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_max_results',
+		SETTINGS_PAGE_SLUG . '_max_results',
 		'Max # results',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_max_results',
+			'name'  => SETTINGS_PAGE_SLUG . '_max_results',
 			'type'  => 'number',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_max_results', 10 ),
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_max_results', 10 ),
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_results_direction',
+		SETTINGS_PAGE_SLUG . '_results_direction',
 		'Results direction',
 		__NAMESPACE__ . '\select_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'    => $GLOBALS['_settings_page_hook'] . '_results_direction',
+			'name'    => SETTINGS_PAGE_SLUG . '_results_direction',
 			'options' => array( 'up' => 'Up', 'down' => 'Down' ),
-			'value'   => get_option( $GLOBALS['_settings_page_hook'] . '_results_direction', 'down' ),
+			'value'   => get_option( SETTINGS_PAGE_SLUG . '_results_direction', 'down' ),
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_minchars',
+		SETTINGS_PAGE_SLUG . '_minchars',
 		'Minimum characters to search',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_minchars',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_minchars', '3' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_minchars',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_minchars', '3' ),
 			'type'  => 'number',
 		)
 	);
@@ -128,178 +128,178 @@ function register_settings() {
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_display_post_meta',
+		SETTINGS_PAGE_SLUG . '_display_post_meta',
 		'Display post metadata',
 		__NAMESPACE__ . '\checkbox_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_display_post_meta',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_display_post_meta', 'true' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_display_post_meta',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_display_post_meta', 'true' ),
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_display_thumbnail',
+		SETTINGS_PAGE_SLUG . '_display_thumbnail',
 		'Display thumbnail',
 		__NAMESPACE__ . '\checkbox_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_display_thumbnail',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_display_thumbnail', 'true' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_display_thumbnail',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_display_thumbnail', 'true' ),
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_display_excerpt',
+		SETTINGS_PAGE_SLUG . '_display_excerpt',
 		'Display excerpt',
 		__NAMESPACE__ . '\checkbox_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_display_excerpt',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_display_excerpt', 'true' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_display_excerpt',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_display_excerpt', 'true' ),
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_excerpt_length',
+		SETTINGS_PAGE_SLUG . '_excerpt_length',
 		'Excerpt length',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_excerpt_length',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_excerpt_length', 30 ),
+			'name'  => SETTINGS_PAGE_SLUG . '_excerpt_length',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_excerpt_length', 30 ),
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_more_results',
+		SETTINGS_PAGE_SLUG . '_more_results',
 		'Show "more results" link',
 		__NAMESPACE__ . '\checkbox_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_more_results',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_more_results', 'true' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_more_results',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_more_results', 'true' ),
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_results_width',
+		SETTINGS_PAGE_SLUG . '_results_width',
 		'Results box width',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_results_width',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_results_width', '300' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_results_width',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_results_width', '300' ),
 			'type'  => 'number',
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_title_color',
+		SETTINGS_PAGE_SLUG . '_title_color',
 		'Title color',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_title_color',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_title_color', '#aaaadd' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_title_color',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_title_color', '#aaaadd' ),
 			'class' => 'dwls_color_picker',
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_fg_color',
+		SETTINGS_PAGE_SLUG . '_fg_color',
 		'Text color',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_fg_color',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_fg_color', '#aaaadd' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_fg_color',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_fg_color', '#aaaadd' ),
 			'class' => 'dwls_color_picker',
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_bg_color',
+		SETTINGS_PAGE_SLUG . '_bg_color',
 		'Background color',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_bg_color',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_bg_color', '#111133' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_bg_color',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_bg_color', '#111133' ),
 			'class' => 'dwls_color_picker',
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_hover_bg_color',
+		SETTINGS_PAGE_SLUG . '_hover_bg_color',
 		'Hover background color',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_hover_bg_color',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_hover_bg_color', '#444477' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_hover_bg_color',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_hover_bg_color', '#444477' ),
 			'class' => 'dwls_color_picker',
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_divider_color',
+		SETTINGS_PAGE_SLUG . '_divider_color',
 		'Divider color',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_divider_color',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_divider_color', '#111122' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_divider_color',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_divider_color', '#111122' ),
 			'class' => 'dwls_color_picker',
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_footer_bg_color',
+		SETTINGS_PAGE_SLUG . '_footer_bg_color',
 		'Footer background color',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_footer_bg_color',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_footer_bg_color', '#555577' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_footer_bg_color',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_footer_bg_color', '#555577' ),
 			'class' => 'dwls_color_picker',
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_footer_fg_color',
+		SETTINGS_PAGE_SLUG . '_footer_fg_color',
 		'Footer foreground color',
 		__NAMESPACE__ . '\text_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_footer_fg_color',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_footer_fg_color', '#ffffff' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_footer_fg_color',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_footer_fg_color', '#ffffff' ),
 			'class' => 'dwls_color_picker',
 		)
 	);
 
 	add_settings_field(
-		$GLOBALS['_settings_page_hook'] . '_shadow',
+		SETTINGS_PAGE_SLUG . '_shadow',
 		'Shadow',
 		__NAMESPACE__ . '\checkbox_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
-			'name'  => $GLOBALS['_settings_page_hook'] . '_shadow',
-			'value' => get_option( $GLOBALS['_settings_page_hook'] . '_shadow', 'false' ),
+			'name'  => SETTINGS_PAGE_SLUG . '_shadow',
+			'value' => get_option( SETTINGS_PAGE_SLUG . '_shadow', 'false' ),
 		)
 	);
 
