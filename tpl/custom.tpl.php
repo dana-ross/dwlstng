@@ -20,6 +20,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php endif; ?>
 }
 
+#dwls-results .dwls-result a {
+color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($fg_color); ?>;
+background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($bg_color); ?>;
+}
+
 #dwls-results .dwls-result:hover {
 	background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($hover_bg_color); ?>;
 }
