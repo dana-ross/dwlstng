@@ -76,19 +76,19 @@ function wp_enqueue_scripts() {
 		),
 		'settings'  => array(
 			'offsets'        => array(
-				'x' => intval( get_option( 'daves-wordpress-live-search_xoffset', 0 ) ),
-				'y' => intval( get_option( 'daves-wordpress-live-search_yoffset', 0 ) ),
+				'x' => intval( get_option( SETTINGS_PAGE_SLUG . '_xoffset', 0 ) ),
+				'y' => intval( get_option( SETTINGS_PAGE_SLUG . '_yoffset', 0 ) ),
 			),
-			'min_chars'      => intval( get_option( 'daves-wordpress-live-search_minchars', 3 ) ),
-			'max_results'    => intval( get_option( 'daves-wordpress-live-search_max_results', 0 ) ),
+			'min_chars'      => intval( get_option( SETTINGS_PAGE_SLUG . '_minchars', 3 ) ),
+			'max_results'    => intval( get_option( SETTINGS_PAGE_SLUG . '_max_results', 0 ) ),
 			'design'         => array(
-				'show_thumbs'       => (bool) get_option( 'daves-wordpress-live-search_thumbs', true ),
-				'show_excerpt'      => (bool) get_option( 'daves-wordpress-live-search_excerpt', true ),
+				'show_thumbs'       => ( 'true' === get_option( SETTINGS_PAGE_SLUG . '_thumbs', true ) ),
+				'show_excerpt'      => ( 'true' === get_option( SETTINGS_PAGE_SLUG . '_excerpt', true ) ),
 				'show_metadata'     => ( 'true' === get_option( SETTINGS_PAGE_SLUG . '_display_post_meta', true ) ),
-				'more_results_link' => (bool) get_option( 'daves-wordpress-live-search_more_results', true ),
-				'results_direction' => stripslashes( get_option( 'daves-wordpress-live-search_results_direction', 'down' ) ),
+				'more_results_link' => ( 'true' === get_option( SETTINGS_PAGE_SLUG . '_more_results', true ) ),
+				'results_direction' => stripslashes( get_option( SETTINGS_PAGE_SLUG . '_results_direction', 'down' ) ),
 			),
-			'excerpt_length' => intval( get_option( 'daves-wordpress-live-search_excerpt_length', 30 ) ),
+			'excerpt_length' => intval( get_option( SETTINGS_PAGE_SLUG . '_excerpt_length', 30 ) ),
 		),
 	);
 
