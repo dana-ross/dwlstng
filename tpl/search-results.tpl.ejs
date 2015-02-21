@@ -3,10 +3,10 @@
 		<li class="dwls-result"><a href="<%= results[result_index].permalink %>">
 				<div class="dwls_thumbnail_wrapper" style="background:url(<%= results[result_index].thumbnail %>);"></div>
 				<div class="dwls_title"><%= results[result_index].title %></div>
-				<% if(results[result_index].author_nicename) { %>
+				<% if(DavesWordPressLiveSearch.settings.design.show_metadata) { %>
 					<div class="dwls_meta">
-						<div class="dwls_author"><%= results[result_index].author_nicename %></div>
-						<div class="dwls_pubdate"><%= new Date(Date.parse(results[result_index].date)).toLocaleString() %></div>
+						<% if(results[result_index].author_nicename) { %><div class="dwls_author"><%= results[result_index].author_nicename %></div><% } %>
+						<% if(results[result_index].date) { %><div class="dwls_pubdate"><%= new Date(Date.parse(results[result_index].date)).toLocaleString() %></div><% } %>
 				<% } %>
 				<div class="dwls_excerpt"><%= results[result_index].excerpt %></div>
 			</a>

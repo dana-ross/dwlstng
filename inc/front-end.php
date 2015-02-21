@@ -84,7 +84,7 @@ function wp_enqueue_scripts() {
 			'design'         => array(
 				'show_thumbs'       => (bool) get_option( 'daves-wordpress-live-search_thumbs', true ),
 				'show_excerpt'      => (bool) get_option( 'daves-wordpress-live-search_excerpt', true ),
-				'show_metadata'     => (bool) get_option( 'daves-wordpress-live-search_display_post_meta', true ),
+				'show_metadata'     => ( 'true' === get_option( SETTINGS_PAGE_SLUG . '_display_post_meta', true ) ),
 				'more_results_link' => (bool) get_option( 'daves-wordpress-live-search_more_results', true ),
 				'results_direction' => stripslashes( get_option( 'daves-wordpress-live-search_results_direction', 'down' ) ),
 			),
