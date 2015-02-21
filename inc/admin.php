@@ -172,6 +172,7 @@ function register_settings() {
 		array(
 			'name'  => SETTINGS_PAGE_SLUG . '_excerpt_length',
 			'value' => get_option( SETTINGS_PAGE_SLUG . '_excerpt_length', 30 ),
+			'description' => __('How many words should make up the excerpt?', 'dwlstng'),
 		)
 	);
 
@@ -317,11 +318,14 @@ function default_input_field_attributes( array $extras = array() ) {
 function text_field( $options ) {
 
 	$options = array_merge(
-		default_input_field_attributes( array( 'type' => 'text' ) ),
+		default_input_field_attributes( array( 'type' => 'text', 'description' => '' ) ),
 		default_id_from_name( $options )
 	);
 
 	echo '<input type="' . esc_attr( $options['type'] ) . '" id="' . esc_attr( $options['id'] ) . '" name="' . esc_attr( $options['name'] ) . '" value="' . esc_attr( $options['value'] ) . '" class="' . esc_attr( $options['class'] ) . '" />';
+	if(!empty($options['description'])) {
+		echo '<p class="description">' . esc_html( $options['description'] ) . '</p>';
+	}
 
 }
 
