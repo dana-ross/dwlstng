@@ -2,8 +2,11 @@ language: php
 
 php:
   - "5.4"
+  - "5.5"
+  - "hhvm"
 
 env:
+  - WP_VERSION=4.0.1 WP_MULTISITE=0
   - WP_VERSION=4.1 WP_MULTISITE=0
 
 before_script:
