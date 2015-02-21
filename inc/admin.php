@@ -35,7 +35,7 @@ function admin_enqueue_scripts() {
 
 	wp_enqueue_script(
 		'daves-wordpress-live-search-color-picker',
-		DWLS_TNG_URL . '/js/src/color-picker.js',
+		plugin_dir_url( DWLS_TNG_PATH . '/defines.php' ) . 'js/src/color-picker.js',
 		array( 'wp-color-picker' ),
 		DWLS_TNG_VERSION,
 		true

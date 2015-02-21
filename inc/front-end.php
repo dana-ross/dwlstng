@@ -22,7 +22,7 @@ function wp_enqueue_styles() {
 
 	wp_enqueue_style(
 		'daves-wordpress-live-search',
-		DWLS_TNG_URL . '/css/src/daves-wordpress-live-search.css',
+		plugin_dir_url( DWLS_TNG_PATH . '/defines.php' ) . 'css/src/daves-wordpress-live-search.css',
 		array(),
 		DWLS_TNG_VERSION,
 		'screen'
@@ -60,7 +60,7 @@ function wp_enqueue_scripts() {
 
 	wp_enqueue_script(
 		'qsa-polyfill-ie7',
-		DWLS_TNG_URL . '/js/src/qsa-polyfill-ie7.js',
+		plugin_dir_url( DWLS_TNG_PATH . '/defines.php' ) . 'js/src/qsa-polyfill-ie7.js',
 		array(),
 		'1.0',
 		true
@@ -68,7 +68,7 @@ function wp_enqueue_scripts() {
 
 	wp_enqueue_script(
 		'daves-wordpress-live-search',
-		DWLS_TNG_URL . '/js/src/daves-wordpress-live-search.js',
+		plugin_dir_url( DWLS_TNG_PATH . '/defines.php' ) . 'js/src/daves-wordpress-live-search.js',
 		array( 'underscore', 'qsa-polyfill-ie7' ),
 		DWLS_TNG_VERSION,
 		true
