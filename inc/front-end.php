@@ -2,9 +2,6 @@
 
 namespace com\davidmichaelross\DavesWordPressLiveSearch;
 
-define( __NAMESPACE__ . '\FRONT_END_ENDPOINT', 'dwls-ajax' );
-define( __NAMESPACE__ . '\FIRST_IMG_META_FIELD', 'dwls_first_image' );
-
 function register_front_end_hooks() {
 
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\wp_enqueue_styles' );

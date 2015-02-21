@@ -2,9 +2,6 @@
 
 namespace com\davidmichaelross\DavesWordPressLiveSearch;
 
-define( __NAMESPACE__ . '\option_group', 'daves-wordpress-live-search' );
-define( __NAMESPACE__ . '\SETTINGS_PAGE_SLUG', 'daves-wordpress-live-search' );
-
 function register_admin_hooks() {
 	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\admin_enqueue_scripts' );
 	add_action( 'admin_menu', __NAMESPACE__ . '\add_settings_page' );
