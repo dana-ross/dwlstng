@@ -8,7 +8,6 @@ env:
 
 before_script:
   - composer install
-  - echo "extension = xdebug.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - sleep 5
 
 script: "./tests/run_tests.sh"
