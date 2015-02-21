@@ -11,6 +11,7 @@ function register_front_end_hooks() {
 	add_filter( 'parse_request', __NAMESPACE__ . '\parse_request' );
 	add_action( 'template_redirect', __NAMESPACE__ . '\template_redirect' );
 	add_action( 'save_post', __NAMESPACE__ . '\update_first_image_postmeta', 10, 2 );
+	add_action( 'pre_get_posts', __NAMESPACE__ . '\pre_get_posts' );
 
 }
 
@@ -153,6 +154,31 @@ function template_redirect() {
 
 }
 
+function pre_get_posts( \WP_Query $query ) {
+
+	global $wp_query;
+
+	if ( ! isset( $wp_query->query_vars[ FRONT_END_ENDPOINT ] ) ) {
+		return $wp_query;
+	}
+
+	if ( $query->is_main_query() ) {
+
+		// Performance optimizations
+		$query->set( 'no_found_rows', true );
+		$query->set( 'update_post_meta_cache', false );
+		$query->set( 'update_post_term_cache', false );
+
+		// Make sure it returns *all* fields
+		$query->set( 'fields', null );
+
+		// WP_Query includes other statuses for logged in users & admins
+		$query->set( 'post_status', 'publish' );
+
+	}
+
+}
+
 function do_search() {
 
 	global $wp_query;
@@ -163,13 +189,14 @@ function do_search() {
 	foreach ( $found_posts as $post ) {
 
 		$post_data[] = array(
-			'ID'        => $post->ID,
-			'title'     => $post->post_title,
-			'excerpt'   => wp_trim_words( $post->post_content, intval( get_option( SETTINGS_PAGE_SLUG . '_excerpt_length'   , 30 ) ), false ),
-			'permalink' => get_permalink( $post->ID ),
-			'date'      => $post->post_date,
-			'post_type' => $post->post_type,
-			'thumbnail' => get_post_thumbnail( $post ),
+			'ID'              => $post->ID,
+			'author_nicename' => get_the_author_meta( 'user_nicename', $post->post_author ),
+			'title'           => $post->post_title,
+			'excerpt'         => wp_trim_words( $post->post_content, intval( get_option( SETTINGS_PAGE_SLUG . '_excerpt_length', 30 ) ), false ),
+			'permalink'       => get_permalink( $post->ID ),
+			'date'            => $post->post_date,
+			'post_type'       => $post->post_type,
+			'thumbnail'       => get_post_thumbnail( $post ),
 		);
 
 	}
@@ -222,7 +249,7 @@ function update_first_image_postmeta( $post_id, $post ) {
 		$post    = get_post( $parent_post, OBJECT );
 	}
 
-	$applyContentFilter = get_option( SETTINGS_PAGE_SLUG .'_content_filter', false );
+	$applyContentFilter = get_option( SETTINGS_PAGE_SLUG . '_content_filter', false );
 	$content            = $post->post_content;
 	if ( $applyContentFilter ) {
 		$content = apply_filters( 'the_content', $content );
