@@ -21,3 +21,7 @@
 .dwls_meta {
 	font-size: .8em;
 }
+
+.dwls_excerpt {
+	clear: left;
+}
