@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 #dwls-results .dwls-result {
+	padding: .25em .5em;
 	color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($fg_color); ?>;
 	background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($bg_color); ?>;
 	border-bottom: 1px solid <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($divider_color); ?>;
