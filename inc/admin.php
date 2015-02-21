@@ -8,10 +8,6 @@ function register_admin_hooks() {
 	add_action( 'admin_init', __NAMESPACE__ . '\register_settings' );
 }
 
-if ( ! defined( 'DWLS_UNIT_TEST' ) ) {
-	register_admin_hooks();
-}
-
 /**
  * Contains the slug of the settings page once it's registered
  *

@@ -15,10 +15,6 @@ function register_front_end_hooks() {
 
 }
 
-if ( ! defined( 'DWLS_UNIT_TEST' ) ) {
-	register_front_end_hooks();
-}
-
 function wp_enqueue_styles() {
 
 	wp_enqueue_style(
