@@ -2,10 +2,6 @@
 
 namespace com\davidmichaelross\DavesWordPressLiveSearch;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Cannot access pages directly.' );
-}
-
 define( __NAMESPACE__ . '\option_group', 'daves-wordpress-live-search' );
 define( __NAMESPACE__ . '\SETTINGS_PAGE_SLUG', 'daves-wordpress-live-search' );
 

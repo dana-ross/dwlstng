@@ -2,10 +2,6 @@
 
 namespace com\davidmichaelross\DavesWordPressLiveSearch;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Cannot access pages directly.' );
-}
-
 function validate_results_direction( $value ) {
 	return ( 'up' === $value ) ? 'up' : 'down';
 }

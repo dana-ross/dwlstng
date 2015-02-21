@@ -2,10 +2,6 @@
 
 namespace com\davidmichaelross\DavesWordPressLiveSearch;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Cannot access pages directly.' );
-}
-
 define( __NAMESPACE__ . '\FRONT_END_ENDPOINT', 'dwls-ajax' );
 define( __NAMESPACE__ . '\FIRST_IMG_META_FIELD', 'dwls_first_image' );
 
