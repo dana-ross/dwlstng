@@ -76,6 +76,9 @@ function wp_enqueue_scripts() {
 		'templates' => array(
 			'search-results' => file_get_contents( DWLS_TNG_PATH . '/tpl/search-results.tpl.ejs' ),
 		),
+		'strings' => array(
+			'More' => __( 'More', 'dwlstng' ),
+		),
 		'settings'  => array(
 			'offsets'        => array(
 				'x' => intval( get_option( SETTINGS_PAGE_SLUG . '_xoffset', 0 ) ),
