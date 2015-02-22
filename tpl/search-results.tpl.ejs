@@ -13,8 +13,10 @@
 		</li>
 	<% } } %>
 	<% if(results && results.length) { %>
+		<% if(more && search_link) { %>
 		<li class="dwls-footer">
-			Footer
+			<a href="<%= search_link %>">More</a>
 		</li>
+		<% } %>
 	<% } %>
 </ul>

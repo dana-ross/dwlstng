@@ -62,8 +62,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	 */
 	function show_results(markup) {
 
-		var results_wrapper = document.createElement('DIV'), results_element;
-		results_wrapper.innerHTML = compiled_templates['search-results']({results: JSON.parse(markup).data});
+		var results_wrapper = document.createElement('DIV'), results_element, response_data = JSON.parse(markup).data;
+		results_wrapper.innerHTML = compiled_templates['search-results'](
+			{
+				'results': response_data.post_data,
+				'more': response_data.more,
+				'search_link': response_data.search_link
+			}
+		);
 		results_element = results_wrapper.getElementsByTagName('UL')[0];
 		document.body.appendChild(results_element);
 		return results_element;

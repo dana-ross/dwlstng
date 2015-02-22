@@ -66,7 +66,6 @@ function register_settings() {
 	register_setting( option_group, SETTINGS_PAGE_SLUG . '_display_thumbnail', __NAMESPACE__ . '\validate_boolean_string' );
 	register_setting( option_group, SETTINGS_PAGE_SLUG . '_display_excerpt', __NAMESPACE__ . '\validate_boolean_string' );
 	register_setting( option_group, SETTINGS_PAGE_SLUG . '_excerpt_length', 'absint' );
-	register_setting( option_group, SETTINGS_PAGE_SLUG . '_more_results', __NAMESPACE__ . '\validate_boolean_string' );
 	register_setting( option_group, SETTINGS_PAGE_SLUG . '_results_width', 'absint' );
 	register_setting( option_group, SETTINGS_PAGE_SLUG . '_title_color', __NAMESPACE__ . '\sanitize_hex_color' );
 	register_setting( option_group, SETTINGS_PAGE_SLUG . '_fg_color', __NAMESPACE__ . '\sanitize_hex_color' );
@@ -80,12 +79,12 @@ function register_settings() {
 	add_settings_field(
 		SETTINGS_PAGE_SLUG . '_max_results',
 		'Max # results',
-		__NAMESPACE__ . '\text_field',
+		__NAMESPACE__ . '\select_field',
 		$GLOBALS['_settings_page_hook'],
 		option_group,
 		array(
 			'name'  => SETTINGS_PAGE_SLUG . '_max_results',
-			'type'  => 'number',
+			'options' => array( '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5' ),
 			'value' => get_option( SETTINGS_PAGE_SLUG . '_max_results', 10 ),
 			'description' => __( "Enter '0' for no limit", 'dwlstng' ),
 		)
@@ -170,18 +169,6 @@ function register_settings() {
 			'name'  => SETTINGS_PAGE_SLUG . '_excerpt_length',
 			'value' => get_option( SETTINGS_PAGE_SLUG . '_excerpt_length', 30 ),
 			'description' => __('How many words should make up the excerpt?', 'dwlstng'),
-		)
-	);
-
-	add_settings_field(
-		SETTINGS_PAGE_SLUG . '_more_results',
-		'Show "more results" link',
-		__NAMESPACE__ . '\checkbox_field',
-		$GLOBALS['_settings_page_hook'],
-		option_group,
-		array(
-			'name'  => SETTINGS_PAGE_SLUG . '_more_results',
-			'value' => get_option( SETTINGS_PAGE_SLUG . '_more_results', 'true' ),
 		)
 	);
 

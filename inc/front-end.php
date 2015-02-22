@@ -53,6 +53,8 @@ function generate_theme_css() {
 
 function wp_enqueue_scripts() {
 
+	global $wp_query;
+
 	wp_enqueue_script(
 		'qsa-polyfill-ie7',
 		plugin_dir_url( DWLS_TNG_PATH . '/defines.php' ) . 'js/src/qsa-polyfill-ie7.js',
@@ -85,7 +87,6 @@ function wp_enqueue_scripts() {
 				'show_thumbs'       => ( 'true' === get_option( SETTINGS_PAGE_SLUG . '_display_thumbnail', true ) ),
 				'show_excerpt'      => ( 'true' === get_option( SETTINGS_PAGE_SLUG . '_display_excerpt', true ) ),
 				'show_metadata'     => ( 'true' === get_option( SETTINGS_PAGE_SLUG . '_display_post_meta', true ) ),
-				'more_results_link' => ( 'true' === get_option( SETTINGS_PAGE_SLUG . '_more_results', true ) ),
 				'results_direction' => stripslashes( get_option( SETTINGS_PAGE_SLUG . '_results_direction', 'down' ) ),
 			),
 			'excerpt_length' => intval( get_option( SETTINGS_PAGE_SLUG . '_excerpt_length', 30 ) ),
@@ -171,11 +172,8 @@ function pre_get_posts( \WP_Query $query ) {
 		// WP_Query includes other statuses for logged in users & admins
 		$query->set( 'post_status', 'publish' );
 
-		// Limit # of posts returned
-		$max_results = absint( get_option( SETTINGS_PAGE_SLUG . '_max_results', 10 ) );
-		if ( 0 !== $max_results ) {
-			$query->set( 'posts_per_page', $max_results );
-		}
+		// Limit # of posts returned. Add 1 to figure out if we need to show "more"
+		$query->set( 'posts_per_page', absint( get_option( SETTINGS_PAGE_SLUG . '_max_results', 10 ) ) + 1 );
 
 	}
 
@@ -185,12 +183,21 @@ function do_search() {
 
 	global $wp_query;
 
-	$found_posts = $wp_query->get_posts();
+	$found_posts = array_slice(
+		$wp_query->get_posts(),
+		0,
+		absint( get_option( SETTINGS_PAGE_SLUG . '_max_results', 10 ) ),
+		true
+	);
 
-	$post_data = array();
+	$response              = new \stdClass();
+	$response->more        = count( $wp_query->get_posts() ) > absint( get_option( SETTINGS_PAGE_SLUG . '_max_results', 10 ) );
+	$response->search_link = add_query_arg( 's', $wp_query->query_vars['s'], home_url( '/' ) );
+	$response->post_data = array();
+
 	foreach ( $found_posts as $post ) {
 
-		$post_data[] = array(
+		$response->post_data[] = array(
 			'ID'              => $post->ID,
 			'author_nicename' => get_the_author_meta( 'user_nicename', $post->post_author ),
 			'title'           => $post->post_title,
@@ -207,7 +214,7 @@ function do_search() {
 
 	}
 
-	return $post_data;
+	return $response;
 
 }
 
