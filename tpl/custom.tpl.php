@@ -26,8 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 #dwls-results .dwls-result a {
-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($fg_color); ?>;
-background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($bg_color); ?>;
+	color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($fg_color); ?>;
+	background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($bg_color); ?>;
 }
 
 #dwls-results .dwls-result:hover {
@@ -38,7 +38,13 @@ background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sani
 	color: <?php echo sanitize_hex_color($title_color); ?>;
 }
 
-#dwls-results .dwls-footer {
+#dwls-footer {
+	padding: .25em .5em;
+	color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($footer_fg_color); ?>;
+	background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($footer_bg_color); ?>;
+}
+
+#dwls-footer a {
 	color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($footer_fg_color); ?>;
 	background-color: <?php echo \com\davidmichaelross\DavesWordPressLiveSearch\sanitize_hex_color($footer_bg_color); ?>;
 }
