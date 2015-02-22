@@ -171,6 +171,12 @@ function pre_get_posts( \WP_Query $query ) {
 		// WP_Query includes other statuses for logged in users & admins
 		$query->set( 'post_status', 'publish' );
 
+		// Limit # of posts returned
+		$max_results = absint( get_option( SETTINGS_PAGE_SLUG . '_max_results', 10 ) );
+		if ( 0 !== $max_results ) {
+			$query->set( 'posts_per_page', $max_results );
+		}
+
 	}
 
 }
