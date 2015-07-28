@@ -10,7 +10,36 @@ env:
   - WP_VERSION=4.1 WP_MULTISITE=0
 
 before_script:
-  - composer install
-  - sleep 5
 
-script: "./tests/run_tests.sh"
+  # Install Apache
+  - sudo apt-get update -qq
+  - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl > /dev/null
+  - sudo chmod 777 -R /home/travis/build/daveross/dwlstng/
+  - sudo ln -s /home/travis/build/daveross/dwlstng/tests/WordPress/ /var/www/WordPress #Add WP to apache htdocs
+  - sudo sed -i -e "s,AllowOverride[ ]None,AllowOverride All,g" /etc/apache2/sites-available/default
+  - sudo /etc/init.d/apache2 restart
+
+  - composer install --dev --prefer-dist
+
+  # XVFB
+  - "export DISPLAY=:99.0"
+  - "Xvfb :99.0 -extension RANDR > /dev/null &"
+
+  # Window manager
+  - echo "c10"
+  - "sudo apt-get install fluxbox -y --force-yes"
+  - echo "c11"
+  - "fluxbox &"
+
+  # Selenium server
+  - "wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar"
+  - "java -jar selenium-server-standalone-2.41.0.jar > /dev/null 2>/dev/null &"
+  - sleep 30 # gives enough time to Selenium to start
+
+script:
+  - "./tests/run_tests.sh"
+  - php .travis/traviswebserverckecker.php http://localhost/WordPress/ # Test apache
+  - mv tests/acceptance.suite.dist.yml tests/acceptance.suite.yml # Create travis system tests config file
+  - "wget http://codeception.com/codecept.phar"
+  - php ./codecept.phar build
+  - php ./codecept.phar run acceptance
